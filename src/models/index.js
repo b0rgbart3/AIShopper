@@ -1,11 +1,16 @@
 "use strict";
 
-var fs = require("fs");
-var path = require("path");
-var basename = path.basename(module.filename);
+// var fs = require("fs");
+// var path = require("path");
+// var basename = path.basename(module.filename);
 //var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
+import User from './User.js';
+import Search from './Search.js';
+import Item from './Item.js';
+import Product from './Product.js';
+import Friend_Connection from './Friend_Connection.js';
 
 // Get the Environment Variables 
 const env_variables = process.env;
@@ -36,41 +41,22 @@ async function connectToDB() {
         console.error('Sequelize Unable to connect to the database:', error);
       }  finally {
 
-        fs
-  .readdirSync(__dirname)
-  .filter(function(file) {
-    return (file.indexOf(".") !== 0) && (file !== basename) && (file.slice(-3) === ".js");
-  })
-  .forEach(function(file) {
-    console.log("Filename: ",file);
+        const models = {
+            User: User(sequelize, DataTypes),
+            Search: Search(sequelize, DataTypes),
+            Item: Item(sequelize, DataTypes),
+            Product: Product(sequelize, DataTypes),
+            Friend_Connection: Friend_Connection(sequelize, DataTypes),
+        }
 
-    
-    // THIS IS THE OLD WAY OF IMPORTING INTO SEQUELIZE
-   //var model = sequelize["import"](path.join(__dirname, file));
-
-    // THIS IS THE NEW WAY
-    var model = require(path.join(__dirname, file));
-    let modelName = file.split('.')[0];
-    db[modelName] = model;
-  });
-
-// Object.keys(db).forEach(function(modelName) {
-//   console.log("model: ", modelName);
-//   if (db[modelName].associate) {
-//     db[modelName].associate(db);
-//   }
-// });
-
-db.sequelize = sequelize;   // this is a reference to our sequelize connection instance
-db.Sequelize = Sequelize;   // this is a reference to the Sequelize base code Library
-
+        db.models = models;
+        db.sequelize = sequelize;   // this is a reference to our sequelize connection instance
+        db.Sequelize = Sequelize;   // this is a reference to the Sequelize base code Library
+        console.log("Finished creating the db models.");
       }
 }
 
 connectToDB();
-
-
-
 
 
 module.exports = db;
