@@ -11,7 +11,7 @@ function App() {
         <div className="App">
         {/* Switch statement makes sure that only one route is chosen. */}
           <Switch>
-            <Route path='/' component={HomePage} />
+            <Route path='/' component={HomePage} exact/>
             <Route component={NotFoundPage} />
           </Switch>
         </div>
