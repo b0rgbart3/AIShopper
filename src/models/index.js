@@ -49,7 +49,11 @@ async function connectToDB() {
             Friend_Connection: Friend_Connection(sequelize, DataTypes),
         }
 
-        db.models = models;
+        db.User = models.User;
+        db.Search= models.Search;
+        db.Item = models.Item;
+        db.Product = models.Product;
+        db.Friend_Connection = models.Friend_Connection;
         db.sequelize = sequelize;   // this is a reference to our sequelize connection instance
         db.Sequelize = Sequelize;   // this is a reference to the Sequelize base code Library
         console.log("Finished creating the db models.");

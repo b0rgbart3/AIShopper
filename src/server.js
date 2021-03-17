@@ -1,9 +1,9 @@
 import express from 'express';
-// import bodyParser from 'body-parser';
+const shopprController = require("./controller.js");
 
 const app = express();
 
-let db = require("./models");
+
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -11,6 +11,11 @@ app.use(express.urlencoded({
 }));
 
 app.get('/hello', (req, res) => res.send('hello'));
+app.get('/api/searches', (req,res) => {
+
+    shopprController.getAllSearches(req, res);
+ //   res.send('Searches:');
+})
 
 app.listen(8000, () => console.log('Listening on port 8000'));
 
