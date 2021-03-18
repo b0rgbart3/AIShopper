@@ -1,6 +1,6 @@
 header {
     width: 100%;
-    height: 100px;
+    height: 90px;
     border-bottom: 4px solid gray;
     overflow: hidden;
     display: grid;
@@ -9,20 +9,14 @@ header {
     cursor: pointer;
 }
 
-.logotype {
+.logo {
     font-weight: 800;
     font-size: 30px;
     letter-spacing: -.035em;
     padding: 32px 0px 32px 20px;
 }
-.logotype:hover {
+.logo:hover {
     background-color:#cccccc;
-}
-
-.desktopMenu {
-    height: 100px;
-    display: none;
-    padding-right:40px;
 }
 
 .registered {
@@ -31,43 +25,10 @@ header {
     top: -8px;
 }
 
-.burger {
-    cursor: pointer;
-    width: 100px;
-    opacity: .8;
-    grid-column: 3;
-    padding-top:20px;
-}
-
-.burger:hover {
-    background-color:#cccccc;
-}
-
-.bar1,
-.bar2,
-.bar3 {
-    width: 40px;
-    height: 8px;
-    background-color: #000000;
-    border-radius: 4px;
-    transition: .4s ease;
-    margin:auto;
-    margin: 8px auto 8px auto;
-}
-
-.change .bar1 {
-    transform: rotate(-45deg) translate(-10px, 12px);
-}
-
-.change .bar3 {
-    transform: rotate(45deg) translate(-10px, -12px);
-}
-
-.change .bar2 {
-    opacity: 0;
-}
-
 .desktopMenu {
+    height: 100px;
+    display: none;
+    padding-right:40px;
     text-align: right;
     font-family: 'Roboto', sans-serif;
 }
@@ -80,17 +41,34 @@ header {
 
 .desktopMenu ul li {
     display:inline-block;
-    padding:20px;
-    padding-top:40px;
     height:100px;
+    padding-top:40px;
+}
+
+a.navLink {
+    height:200px;
     font-weight: 500;
     text-transform: uppercase;
+    font-size:16px;
+    padding:40px 30px 40px 30px;
+}
+a.navLink:hover {
+    background-color:#cccccc;
 }
 
-.desktopMenu ul li:hover {
-    background-color:#dddddd;
+a.pill {
+    background-color:rgb(0, 195, 255);
+    border-radius:20px;
+    height:30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding:10px 20px 10px 20px;
+    margin-left:10px;
+    margin-right:10px;
+  }
+a.pill:hover {
+    color:white;
 }
-
 
 @media only screen and (min-width:780px) {
     header {

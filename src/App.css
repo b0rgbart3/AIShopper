@@ -13,3 +13,8 @@ body {
   min-height:100vh;
   box-shadow:0 0 12px #aaaaaa;
 }
+
+a {
+  color:black;
+  text-decoration: none;
+}
