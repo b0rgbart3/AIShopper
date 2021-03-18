@@ -39,9 +39,33 @@
     overflow: hidden;
     transition: all .5s;
     height:0px;
-    background-color:#cccccc;
+    background-color:#dddddd;
 }
 
 .mobileMenuOpen {
-    height:200px;
+    height:170px;
+}
+
+.mobileMenu ul {
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+.mobileMenu ul li {
+    border-bottom:2px solid gray;
+    margin:0;
+    padding:0;
+    padding-left:40px;
+    padding-top:20px;
+    padding-bottom:10px;
+    font-weight: 500;
+    font-size:20px;
+    text-transform: uppercase;
+    user-select: none;
+    cursor:pointer;
+}
+
+.mobileMenu ul li:hover {
+    background-color:#aaaaaa;
 }

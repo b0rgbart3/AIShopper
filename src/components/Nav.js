@@ -6,7 +6,7 @@ import Burger from "./Burger";
 
 
 const Nav = () => {
-    const [mobileOpen, setMobileOpen] = useState('phase2');
+    const [mobileOpen, setMobileOpen] = useState('');
 
 function toggleMobileMenu(e) {
     e.preventDefault();
@@ -42,13 +42,13 @@ function toggleMobileMenu(e) {
             <div className={`mobileMenu ${mobileOpen}`}>
             <ul>
                 <li>
-                <Link className="navLink" to="/search">Search</Link>
+                <Link className="" to="/search">Search</Link>
                 </li>
                 <li>
-                <Link className="navLink" to="/about">About</Link>
+                <Link className="" to="/about">About</Link>
                 </li>
                 <li>
-                <Link className="pill" to="/login'">Login</Link>
+                <Link className="" to="/login'">Login</Link>
                 </li>
             </ul>
             </div>
