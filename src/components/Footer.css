@@ -1,0 +1,16 @@
+footer {
+    background-color:#3a474e;
+    color:white;
+    min-height:200px;
+    padding-left:80px;
+    padding-top:50px;
+}
+
+.footerLogo {
+    font-size:24px;
+    font-weight: 500;
+}
+
+.copyright {
+    margin-top:50px;
+}

@@ -1,0 +1,64 @@
+.hero {
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.hero img {
+    width:100%;
+    margin-bottom:-4px;
+}
+
+.hero h1 {
+    position: absolute;
+    top:60px;
+    width:100%;
+    text-align: center;
+    color:white;
+    text-shadow:4px 4px 14px black;
+    font-size:80px;
+    font-weight:500;
+    letter-spacing:-.035em;
+}
+
+.hero h2 {
+    position:absolute;
+    top:20px;
+    width:100%;
+    text-align: center;
+    color:white;
+    text-shadow:4px 4px 8px black;
+    font-size:50px;
+    font-weight:400;
+    letter-spacing:-.025em;
+}
+.hero .registered {
+    font-size:36px;
+    position: relative;
+    left:4px;
+    top:-32px;
+    text-shadow:4px 4px 8px black;
+    color:rgba(255,255,255,.85);
+    font-weight: 500;
+}
+.bodyText {
+    padding-left:40px;
+    padding-right:40px;
+    padding-bottom:120px;
+    margin:auto;
+    max-width:800px;
+}
+
+.bodyText h1 {
+    text-align: center;
+}
+
+
+.bodyText p {
+    margin-bottom:30px;
+    font-weight: 400;
+    font-size:16px;
+    line-height:24px;
+    color:#666666;
+    letter-spacing: -.01em;
+}

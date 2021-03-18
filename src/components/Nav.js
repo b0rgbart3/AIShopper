@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../App.css";
 import "./Nav.css";
 import Burger from "./Burger";
+import MobileMenu from "./MobileMenu";
 
 
 const Nav = () => {
@@ -20,10 +21,10 @@ function toggleMobileMenu(e) {
     return (
         <>
             <header>
-            <div className="logo">
+            <Link to="/"><div className="logo">
                 ImageShoppr
                 <span className="registered">&reg;</span>
-            </div>
+            </div></Link>
             <div className="desktopMenu">
                 <ul>
                 <li>
@@ -39,19 +40,7 @@ function toggleMobileMenu(e) {
             </div>
             <Burger handler={toggleMobileMenu}/>
             </header>
-            <div className={`mobileMenu ${mobileOpen}`}>
-            <ul>
-                <li>
-                <Link className="" to="/search">Search</Link>
-                </li>
-                <li>
-                <Link className="" to="/about">About</Link>
-                </li>
-                <li>
-                <Link className="" to="/login'">Login</Link>
-                </li>
-            </ul>
-            </div>
+            <MobileMenu mobileOpen={mobileOpen}/>
         </>
         );
     }
