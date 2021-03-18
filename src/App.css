@@ -23,3 +23,9 @@ a {
   padding-top:12px;
   text-align: center;
 }
+
+.registered {
+  font-size: 18px;
+  position: relative;
+  top: -.8em;
+}
