@@ -15,7 +15,7 @@ import Friend_Connection from './Friend_Connection.js';
 // Get the Environment Variables 
 const env_variables = process.env;
 const env = process.env.NODE_ENV || "development";
-//console.log(env_variables);
+// console.log(env_variables);
 console.log("The NODE Environment: ", env);
 
 const DB_NAME = env_variables['SHOPPR_LOCAL_DB'];
