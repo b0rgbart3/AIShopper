@@ -1,43 +1,94 @@
 header {
-    width:100%;
-    height:100px;
-    border-bottom:4px solid gray;
-    border:1px solid red;
+    width: 100%;
+    height: 100px;
+    border-bottom: 4px solid gray;
     overflow: hidden;
-    display:grid;
-    grid-template-columns: 250px auto 100px;
+    display: grid;
+    grid-template-columns: 230px auto 100px;
+    user-select: none;
+    cursor: pointer;
 }
 
 .logotype {
-    font-weight:800;
-    font-size:30px;
+    font-weight: 800;
+    font-size: 30px;
     letter-spacing: -.035em;
-    padding:32px 20px 32px 20px;
-    border:2px solid red;
-  }
+    padding: 32px 0px 32px 20px;
+}
+.logotype:hover {
+    background-color:#cccccc;
+}
 
-  .desktopMenu {
-      border:2px solid blue;
-      height:100px;
-      display:none;
-  }
-  
-  .registered {
-    font-size:18px;
+.desktopMenu {
+    height: 100px;
+    display: none;
+    padding-right:40px;
+}
+
+.registered {
+    font-size: 18px;
     position: relative;
-    top:-8px;
-  }
+    top: -8px;
+}
 
-  .burger {
+.burger {
     cursor: pointer;
     width: 100px;
-    opacity:.8;
-    border:8px solid red;
-    grid-column:3;
+    opacity: .8;
+    grid-column: 3;
+    padding-top:20px;
 }
 
 .burger:hover {
-opacity:1;
+    background-color:#cccccc;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 40px;
+    height: 8px;
+    background-color: #000000;
+    border-radius: 4px;
+    transition: .4s ease;
+    margin:auto;
+    margin: 8px auto 8px auto;
+}
+
+.change .bar1 {
+    transform: rotate(-45deg) translate(-10px, 12px);
+}
+
+.change .bar3 {
+    transform: rotate(45deg) translate(-10px, -12px);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.desktopMenu {
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+}
+
+.desktopMenu ul {
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+.desktopMenu ul li {
+    display:inline-block;
+    padding:20px;
+    padding-top:40px;
+    height:100px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.desktopMenu ul li:hover {
+    background-color:#dddddd;
 }
 
 
@@ -45,10 +96,12 @@ opacity:1;
     header {
         grid-template-columns: 250px auto;
     }
+
     .burger {
-       display:none;
+        display: none;
     }
+
     .desktopMenu {
-       display:inline;
+        display: inline;
     }
 }
