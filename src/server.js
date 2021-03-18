@@ -5,7 +5,7 @@ const shopprController = require("./controller.js");
 const app = express();
 
 
-app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static(path.join(__dirname, '../build')));
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
@@ -20,7 +20,7 @@ app.get('/api/searches', (req,res) => {
 
 // pass all get requests that aren't part of the API to the React App
 app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname + 'build/index.html'));
+    res.sendFile(path.join(__dirname + '../build/index.html'));
 });
 
 

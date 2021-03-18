@@ -1,0 +1,54 @@
+header {
+    width:100%;
+    height:100px;
+    border-bottom:4px solid gray;
+    border:1px solid red;
+    overflow: hidden;
+    display:grid;
+    grid-template-columns: 250px auto 100px;
+}
+
+.logotype {
+    font-weight:800;
+    font-size:30px;
+    letter-spacing: -.035em;
+    padding:32px 20px 32px 20px;
+    border:2px solid red;
+  }
+
+  .desktopMenu {
+      border:2px solid blue;
+      height:100px;
+      display:none;
+  }
+  
+  .registered {
+    font-size:18px;
+    position: relative;
+    top:-8px;
+  }
+
+  .burger {
+    cursor: pointer;
+    width: 100px;
+    opacity:.8;
+    border:8px solid red;
+    grid-column:3;
+}
+
+.burger:hover {
+opacity:1;
+}
+
+
+@media only screen and (min-width:780px) {
+    header {
+        grid-template-columns: 250px auto;
+    }
+    .burger {
+       display:none;
+    }
+    .desktopMenu {
+       display:inline;
+    }
+}
