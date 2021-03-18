@@ -70,6 +70,8 @@ a.pill:hover {
     color:white;
 }
 
+
+
 @media only screen and (min-width:780px) {
     header {
         grid-template-columns: 250px auto;
@@ -81,5 +83,8 @@ a.pill:hover {
 
     .desktopMenu {
         display: inline;
+    }
+    .mobileMenu {
+        display:none;
     }
 }

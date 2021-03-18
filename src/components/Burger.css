@@ -34,3 +34,14 @@
 .change .bar2 {
     opacity: 0;
 }
+
+.mobileMenu {
+    overflow: hidden;
+    transition: all .5s;
+    height:0px;
+    background-color:#cccccc;
+}
+
+.mobileMenuOpen {
+    height:200px;
+}
