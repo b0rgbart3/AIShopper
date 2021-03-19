@@ -1,20 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
+import SearchComponent from "../components/SearchComponent";
+import AnalyzeImageComponent from "../components/AnalyzeImageComponent";
 
+function Search(){
+    const [url,setUrl] = useState('');
 
-const SearchPage = () => (
-    <>
-    <h1>Hello, welcome to my blog!</h1>
+    // when the user enters a url, this function will validate it
+    function validateUrl(urlString) {
+        let tempUrlString = urlString.trim();
+        let regex = /(http(s?):)*\.(?:jpg|png)/;
+        if (tempUrlString.match(regex)) {
+            setUrl(tempUrlString);
+        } else {
+            setUrl('');
+        }
+    }
 
-    <p>
-        Blog post #1
-    </p>
-    <p>
-        Blog post #2
-    </p>
-    <p>
-        Blog post #3
-    </p>
-    </>
-)
+    // If there is no valid url yet, we display the search field,
+    // otherwise we display the image itself, and a button to start the analysis
 
-export default SearchPage;
+    return (
+      <div className='search'>
+    
+           { url === '' ?
+           <SearchComponent validateUrl={validateUrl}/>  :
+           <AnalyzeImageComponent url={url}/>
+           }
+      </div>     
+    );
+}
+
+export default Search;

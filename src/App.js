@@ -6,10 +6,13 @@ import SearchPage from './pages/SearchPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import { ToastProvider } from 'react-toast-notifications'
 
 function App() {
   return (
     <Router>
+    <div>
+    
         <div className="App">
         {/* Switch statement makes sure that only one route is chosen. */}
         <Nav/>
@@ -20,6 +23,7 @@ function App() {
           </Switch>
           <Footer />
         </div>
+     </div>
     </Router>
    
   );
