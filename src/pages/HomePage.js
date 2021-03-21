@@ -7,7 +7,7 @@ import './HomePage.css';
 const HomePage = () => (
     <>
     <div className='hero'>
-        <img src={Hero}></img>
+        <img src={Hero} alt='livingroom'></img>
         <h2> Welcome to</h2>
         <h1>ImageShoppr<span className='registered'>®</span></h1>
     </div>

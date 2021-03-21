@@ -6,7 +6,7 @@ import SearchPage from './pages/SearchPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import { ToastProvider } from 'react-toast-notifications'
+// import { ToastProvider } from 'react-toast-notifications'
 
 function App() {
   return (

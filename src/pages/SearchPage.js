@@ -6,7 +6,9 @@ function Search(){
     const [url,setUrl] = useState('');
 
     // when the user enters a url, this function will validate it
-    function validateUrl(urlString) {
+    function validateUrl(e, urlString) {
+        e.preventDefault();
+        console.log(urlString);
         let tempUrlString = urlString.trim();
         let regex = /(http(s?):)*\.(?:jpg|png)/;
         if (tempUrlString.match(regex)) {
@@ -14,6 +16,7 @@ function Search(){
         } else {
             setUrl('');
         }
+        console.log(url);
     }
 
     // If there is no valid url yet, we display the search field,

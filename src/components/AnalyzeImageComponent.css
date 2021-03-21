@@ -1,0 +1,10 @@
+.analyzeImage{
+    width:50%;
+    margin:auto;
+    text-align: center;
+    padding-bottom:40px;
+}
+
+.analyzeImage img {
+    width:100%;
+}

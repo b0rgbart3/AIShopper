@@ -1,14 +1,14 @@
-import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import React, {useRef} from "react";
+
 import "../App.css";
 import "./SearchComponent.css";
 
 const SearchComponent = (props) => {
-
+    const url = useRef();
     return (
       <>
-        <form onSubmit={props.validateUrl}>
-          <input></input>
+        <form onSubmit={(e)=>props.validateUrl(e,url.current.value)}>
+          <input ref={url}></input>
         </form>
       </>
     ); 
