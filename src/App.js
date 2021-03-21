@@ -1,11 +1,13 @@
 // import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import SearchPage from './pages/SearchPage';
-import NotFoundPage from './pages/NotFoundPage';
+import { ShopprProvider } from "./utils/GlobalState";
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import NotFound from './pages/NotFound';
+import Analyze from './pages/Analyze';
 // import { ToastProvider } from 'react-toast-notifications'
 
 function App() {
@@ -14,16 +16,20 @@ function App() {
     <div>
     
         <div className="App">
+        <ShopprProvider>
         {/* Switch statement makes sure that only one route is chosen. */}
-        <Nav/>
+          <Nav/>
           <Switch>
-            <Route path='/' component={HomePage} exact/>
-            <Route path='/search' component={SearchPage} />
-            <Route component={NotFoundPage} />
+            <Route path='/' component={Home} exact/>
+            <Route path='/search' component={Search} />
+            <Route path='/analyze' component={Analyze} />
+            <Route component={NotFound} />
           </Switch>
           <Footer />
+          </ShopprProvider>
         </div>
      </div>
+     
     </Router>
    
   );

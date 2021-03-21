@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
+import "../App.scss";
 import "./Nav.css";
 
 const MobileMenu = (props) => {

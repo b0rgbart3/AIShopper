@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
+import "../App.scss";
 import "./Nav.css";
 import Burger from "./Burger";
 import MobileMenu from "./MobileMenu";

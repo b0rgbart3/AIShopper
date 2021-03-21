@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import Hero from '../assets/hero.jpg';
-import './HomePage.css';
+import './Home.css';
 
 
 const HomePage = () => (

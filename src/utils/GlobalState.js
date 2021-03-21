@@ -90,6 +90,7 @@ const reducer = (state, action) => {
     return {...state, Friends: action.friends}
   
   case ENTER_URL:
+    console.log("In GS setting image_url to: ", action.url);
     return {...state, has_url: true, CurrentSearch: { image_url: action.url } }
 
   case ADD_SEARCH_DETAIL:
