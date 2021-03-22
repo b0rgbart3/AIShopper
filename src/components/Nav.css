@@ -7,6 +7,7 @@ header {
     grid-template-columns: 230px auto 100px;
     user-select: none;
     cursor: pointer;
+    background-color:white;
 }
 
 .logo {

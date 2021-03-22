@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import Hero from '../assets/hero.jpg';
-import './Home.css';
+import './Home.scss';
+import '../App.scss';
 
 
 const HomePage = () => (
-    <>
+    <div className='home'>
     <div className='hero'>
         <img src={Hero} alt='livingroom'></img>
         <h2> Welcome to</h2>
         <h1>ImageShoppr<span className='registered'>®</span></h1>
+        <Link to='/search' className='pill heroPill'>
+Get started</Link>
     </div>
     <div className='bodyText'>
    <h1> What is <span className='logotype'>ImageShoppr</span><span className='registered'>®</span>?</h1>
@@ -34,10 +37,10 @@ Networking is essential for accumulating good information. When it comes to prod
 <h1>Join <span className='logotype'>ImageShoppr</span><span className='registered'>®</span>!</h1>
 <div className='centerMe'>
 <Link to='/join' className='pill'>
-Get Started</Link>
+Join today</Link>
     </div>
     </div>
-    </>
+    </div>
 )
 
 export default HomePage;

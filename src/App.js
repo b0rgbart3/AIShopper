@@ -28,6 +28,7 @@ function App() {
           <Footer />
           </ShopprProvider>
         </div>
+     
      </div>
      
     </Router>

@@ -16,12 +16,13 @@ function Analyze(){
     }
     return(
 
-        <>
+        <div className='analyze'>
           <div className='analyzeImage'>
           <img src={state.CurrentSearch.image_url} />
+          </div>
           <Link to="/analyze" className='pill'>Analyze this image</Link>
+      
         </div>
-        </>
     );
 }
 

@@ -33,12 +33,11 @@ function Search(){
 
     return (
       <div className='search'>
-    
         <h1>enter an image url:</h1>
         <form onSubmit={(e)=>validateUrl(e,url.current.value)}>
-            <input ref={url}></input>
+            <input ref={url} type="text" />
+            <input type='submit' value='search' />
         </form> 
-           
       </div>     
     );
 }

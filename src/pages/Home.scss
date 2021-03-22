@@ -1,3 +1,7 @@
+.home {
+background-color:white;
+}
+
 .hero {
     overflow: hidden;
     position: relative;
@@ -47,6 +51,7 @@
     padding-bottom:120px;
     margin:auto;
     max-width:800px;
+    background-color:white;
 }
 
 .bodyText h1 {
@@ -65,4 +70,32 @@
 
 .logotype {
     letter-spacing: -.035em;
+}
+
+a.heroPill {
+    position: relative;
+    top:-30px;
+    font-size:24px;
+    font-weight:700;
+    font-family: 'Roboto', sans-serif;
+    box-shadow:0 0 8px black;
+    border-radius:30px;
+}
+
+@media only screen and (min-width:800px) {
+    a.heroPill {
+        top:-100px;
+    }
+}
+
+@media only screen and (min-width:900px) {
+    a.heroPill {
+        top:-200px;
+    }
+}
+
+@media only screen and (min-width:1000px) {
+    a.heroPill {
+        top:-300px;
+    }
 }
