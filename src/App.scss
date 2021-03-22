@@ -65,3 +65,17 @@ a {
 .centerItem {
   display:block;
 }
+
+button.pill-style {
+  @include pill-style;
+  outline:none;
+}
+
+button.pill-style:hover {
+  @include pill-hover;
+  outline:none;
+}
+
+button.pill-style:active {
+  outline:none;
+}

@@ -1,21 +1,5 @@
 @import "../Colors.scss";
 
-@mixin pill-style {
-    background-color:rgb(0, 195, 255);
-    border-radius:20px;
-    height:40px;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding:10px 20px 10px 20px;
-    margin-left:10px;
-    margin-right:10px;
-    max-width:200px;
-    cursor: pointer;
-    user-select:none;
-  }
-@mixin pill-hover {
-    color:white;
-}
 
 .search {
     margin-top:0;
@@ -25,7 +9,7 @@
     padding-bottom:80px;
     text-align: center;
     min-height:500px;
-    padding-top:100px;
+    padding-top:20px;
 }
 
 .search h1 {
@@ -171,3 +155,19 @@
      top:6px;
      right:30px;
  }
+
+ .analyze {
+    text-align: center;
+    padding-bottom:40px;
+}
+.analyzeImage{
+    width:100%;
+    margin:auto;
+    text-align: center;
+    padding-bottom:20px;
+
+}
+
+.analyzeImage img {
+   height:400px;
+}

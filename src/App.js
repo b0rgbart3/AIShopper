@@ -7,10 +7,11 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import NotFound from './pages/NotFound';
-import Analyze from './pages/Analyze';
+
 // import { ToastProvider } from 'react-toast-notifications'
 
 function App() {
+  
   return (
     <Router>
     <div>
@@ -22,7 +23,6 @@ function App() {
           <Switch>
             <Route path='/' component={Home} exact/>
             <Route path='/search' component={Search} />
-            <Route path='/analyze' component={Analyze} />
             <Route component={NotFound} />
           </Switch>
           <Footer />
