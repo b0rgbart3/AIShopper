@@ -88,6 +88,7 @@ module.exports = {
   },
 
   getAllSearches: function (req, res) {
+    console.log("In Controller, searching the db.");
     db.Search.findAll( {
       raw: true,
     }
