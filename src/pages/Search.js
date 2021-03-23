@@ -82,7 +82,12 @@ function Search(){
               }
               let payload = { UserId: thisUserId, image_url: state.CurrentSearch.image_url,
                   itemNames: res.data };
-              saveSearch( payload );
+              
+              if (res.data.items.length > 0) {
+                saveSearch( payload );
+              } else {
+                console.log("Google Image AI wasn't able to extract any items.");
+              }
 
               // if (res.data && res.data.items && res.data.items.length > 0) {
               //     history.push("/result");

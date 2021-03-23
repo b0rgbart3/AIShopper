@@ -204,24 +204,33 @@ module.exports = {
       let searchId = newSearch.get({ plain: true }).id;
       let bulkCreateArr = [];
       console.log("Search Id: ", searchId);
+      console.log("About to save the items too.");
+      console.log(req.body.data);
+
+      if (req.body.data.itemNames.items.length<1) {
+        throw('No items extracted.');
+      } else {
+        
+
+          for (let i = 0; i < req.body.data.itemNames.items.length; i++) {  // used to be itemNames
+            let itemObj = {
+              SearchId: searchId,
+              name: req.body.data.itemNames.items[i],  // used to be itemNames
+            };
+            bulkCreateArr.push(itemObj);
+          }
+          db.Item.bulkCreate(bulkCreateArr, {
+            returning: true,
+          })
+            .then(function (afterSave) {
+              res.json(afterSave);
+            })
+            .catch((err) => {
+              res.status(404).json({ err: err });
+            });
+      }
       res.status(200).json({newSearch});
 
-      // for (let i = 0; i < req.body.data.items.length; i++) {  // used to be itemNames
-      //   let itemObj = {
-      //     SearchId: searchId,
-      //     name: req.body.data.items[i],  // used to be itemNames
-      //   };
-      //   bulkCreateArr.push(itemObj);
-      // }
-      // db.Item.bulkCreate(bulkCreateArr, {
-      //   returning: true,
-      // })
-      //   .then(function (afterSave) {
-      //     res.json(afterSave);
-      //   })
-      //   .catch((err) => {
-      //     res.status(404).json({ err: err });
-      //   });
     }).catch((err) => {
       console.log("Not able to save the search: ", err);
       res.status(500).json({err:err});
