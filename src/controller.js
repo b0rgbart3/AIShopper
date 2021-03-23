@@ -193,29 +193,38 @@ module.exports = {
 
   saveSearch: function (req, res) {
     // data like : {UserId:'',image_url:'',itemNames: []}
+    console.log("about to save a search:", req.body.data);
+    console.log('The user id is:',  req.body.data.UserId);
     db.Search.create({
       image_url: req.body.data.image_url,
       UserId: req.body.data.UserId,
     }).then(function (newSearch) {
       // get searchId
+      console.log("We have created a new search: ", newSearch);
       let searchId = newSearch.get({ plain: true }).id;
       let bulkCreateArr = [];
-      for (let i = 0; i < req.body.data.items.length; i++) {  // used to be itemNames
-        let itemObj = {
-          SearchId: searchId,
-          name: req.body.data.items[i],  // used to be itemNames
-        };
-        bulkCreateArr.push(itemObj);
-      }
-      db.Item.bulkCreate(bulkCreateArr, {
-        returning: true,
-      })
-        .then(function (afterSave) {
-          res.json(afterSave);
-        })
-        .catch((err) => {
-          res.status(404).json({ err: err });
-        });
+      console.log("Search Id: ", searchId);
+      res.status(200).json({newSearch});
+
+      // for (let i = 0; i < req.body.data.items.length; i++) {  // used to be itemNames
+      //   let itemObj = {
+      //     SearchId: searchId,
+      //     name: req.body.data.items[i],  // used to be itemNames
+      //   };
+      //   bulkCreateArr.push(itemObj);
+      // }
+      // db.Item.bulkCreate(bulkCreateArr, {
+      //   returning: true,
+      // })
+      //   .then(function (afterSave) {
+      //     res.json(afterSave);
+      //   })
+      //   .catch((err) => {
+      //     res.status(404).json({ err: err });
+      //   });
+    }).catch((err) => {
+      console.log("Not able to save the search: ", err);
+      res.status(500).json({err:err});
     });
   },
 

@@ -26,9 +26,13 @@ function Search(){
         })
         .catch((err) => {
           console.log("Save not successfull");
+        })
+        .finally(() => {
+          console.log("Finally done saving the search, about to update state.");
+          dispatch({ type: ADD_SEARCH_DETAIL, newSearch: payload.itemNames });
         });
   
-      dispatch({ type: ADD_SEARCH_DETAIL, newSearch: payload.itemNames });
+     
     }
 
     // when the user enters a url, this function will validate it
@@ -72,7 +76,7 @@ function Search(){
 
               // Let's just SAVE ALL THE SEARCHES that are fresh images
               // even if there is no logged in user.
-              let thisUserId = 0;
+              let thisUserId = 1;
               if (state.User) {
                   thisUserId = state.User.id;
               }
@@ -80,17 +84,17 @@ function Search(){
                   itemNames: res.data };
               saveSearch( payload );
 
-              if (res.data && res.data.items && res.data.items.length > 0) {
-                  history.push("/result");
-              } else {
-                  // addToast(
-                  // `No results found, please try uploading a clearer image`,
-                  // {
-                  //     appearance: "warning",
-                  //     autoDismiss: true,
-                  // }
-                  // );
-              }
+              // if (res.data && res.data.items && res.data.items.length > 0) {
+              //     history.push("/result");
+              // } else {
+              //     // addToast(
+              //     // `No results found, please try uploading a clearer image`,
+              //     // {
+              //     //     appearance: "warning",
+              //     //     autoDismiss: true,
+              //     // }
+              //     // );
+              // }
               })
               .catch((err) => {
               console.log(err);

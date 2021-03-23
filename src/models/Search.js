@@ -6,6 +6,10 @@ module.exports = function(sequelize, DataTypes) {
       },
       image_blob: {
         type: DataTypes.BLOB("long") 
+      },
+      userId: {
+        type: DataTypes.STRING,
+        defaultValue: '1'
       }
     });
   
