@@ -171,3 +171,23 @@
 .analyzeImage img {
    height:400px;
 }
+
+.thumbs {
+    display:flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.thumb {
+    display:flex-item;
+    width:20%;
+    margin:auto;
+    box-shadow:0 0 8px gray;
+   
+    overflow: hidden;
+}
+
+.thumb img {
+    width:100%;
+    margin-bottom:-4px;
+}

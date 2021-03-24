@@ -1,7 +1,7 @@
 
 .results {
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .resultImage {
@@ -13,6 +13,22 @@
 }
 
 .resultItems {
+
+
+}
+
+.resultData {
+    padding-left:20px;
+
+}
+
+@media only screen and(min-width:800px) {
+
+    .results {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
 
 
 }

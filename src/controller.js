@@ -87,7 +87,7 @@ module.exports = {
     });
   },
 
-  getAllSearches: function (req, res) {
+  getSearches: function (req, res) {
     console.log("In Controller, searching the db.");
     db.Search.findAll( {
       raw: true,
@@ -99,7 +99,7 @@ module.exports = {
       console.log("There was an error: ", error);
     })
   },
-  getSearches: function (req, res) {
+  getSearchByUrl: function (req, res) {
 
     if (req.query) {
       console.log("Searching searches for: ", req.query);

@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
     checkIfUrlWasAlreadyAnalyzed: function(imageUrl) {
         console.log('checking: ', imageUrl);
-        return axios.get("/api/searches?url="+imageUrl);
+        return axios.get("/api/findSearchByUrl?url="+imageUrl);
     },
     createNewUser: function(User) {
         console.log("In the API: ", User);
@@ -58,6 +58,10 @@ export default {
 
     getSearchHistory: function(userId){
         return axios.get("/api/getSearchHistory/"+userId)
+    },
+
+    getSearches: function() {
+        return axios.get("/api/searches")
     },
 
     saveSearch: function(payload){

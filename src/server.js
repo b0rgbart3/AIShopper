@@ -11,10 +11,14 @@ app.use(express.urlencoded({
 }));
 
 app.get('/hello', (req, res) => res.send('hello'));
-app.get('/api/searches', (req,res) => {
+app.get('/api/findSearchByUrl', (req,res) => {
     console.log("in the api, doing a search.");
-    shopprController.getSearches(req, res);
+    shopprController.getSearchByUrl(req, res);
 });
+app.get('/api/searches', (req,res) => {
+  shopprController.getSearches(req, res);
+});
+
 app.get('/api/itemsBySearchId/:id', (req,res) => {
   shopprController.getItemsBySearchId(req,res);
 });
@@ -24,6 +28,7 @@ app.post('/api/extractUrl', (req,res) => {
 app.post('/api/saveSearch', (req, res) => {
   shopprController.saveSearch(req,res);
 })
+
 
 
 // pass all get requests that aren't part of the API to the React App

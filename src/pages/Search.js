@@ -10,12 +10,24 @@ function Search(){
     const [state, dispatch ] = useShopprContext();
     const url = useRef();
     const [localUrl, setLocalUrl] = useState('');
+    const [localSearches, setLocalSearches] = useState([]);
 
-    useEffect(() => {
-      console.log('Entering the search page:', localUrl);
+    // useEffect(() => {
+    //   console.log('Entering the search page:', localUrl);
 
-     // dispatch({ type: ENTER_URL, url: '' });
-    }, [localUrl]);
+    //  // dispatch({ type: ENTER_URL, url: '' });
+    // }, [localUrl]);
+
+    useEffect(()=> {
+
+      API.getSearches().then((response) => {
+        console.log("Got these searches:", response);
+        setLocalSearches(response.data);
+      }).catch((err) => {
+        console.log("Error loading previous searches:", err);
+      });
+    }, [localSearches] );
+    
 
     function saveSearch(payload) {
       console.log("payload to save search: ", payload);
@@ -152,6 +164,14 @@ function Search(){
 
     return (
       <div className='search'>
+      <div className=''>
+      <h1>Previous Searches:</h1>
+      { localSearches ? (<div className='thumbs'>
+      {localSearches.map((search,index) => (
+        <div key={index} className='thumb'><img src={search.image_url}/></div>
+      ))}
+      </div>): (<div></div>)}
+      </div>
         <h1>enter an image url:</h1>
         <form onSubmit={(e)=>validateUrl(e,url.current.value)}>
             <input ref={url} type="text"/>
