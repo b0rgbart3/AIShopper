@@ -131,7 +131,14 @@ function Search(){
               console.log('Search Id: ', searchId);
               API.getItems(searchId).then((items) => {
                 console.log("Got these items: ", items);
-              }).catch((err) =>{console.log(err);});
+
+                dispatch({ type: SEARCH_SAVED, searchSaved: true });
+                dispatch({ type: ADD_SEARCH_DETAIL, 
+                  newSearch: { 'image_url': existingSearches.data[0].image_url, 'items': items.data} });
+
+              }).catch((err) =>{console.log(err);}).finally(()=>{
+                history.push('/results');
+              });
 
           }
      }).catch((err) => {

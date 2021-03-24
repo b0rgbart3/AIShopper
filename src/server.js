@@ -15,7 +15,7 @@ app.get('/api/searches', (req,res) => {
     console.log("in the api, doing a search.");
     shopprController.getSearches(req, res);
 });
-app.get('api/itemsBySearchId/:id', (req,res) => {
+app.get('/api/itemsBySearchId/:id', (req,res) => {
   shopprController.getItemsBySearchId(req,res);
 });
 app.post('/api/extractUrl', (req,res) => {

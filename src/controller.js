@@ -93,7 +93,7 @@ module.exports = {
       raw: true,
     }
     ).then( (response) => {
-      console.log("response from searching db for matching urls: ", response);
+      console.log("In getALLSearches: response from searching db for matching urls: ", response);
       res.json(response);
     }).catch ( (error) => {
       console.log("There was an error: ", error);
@@ -107,7 +107,7 @@ module.exports = {
         raw: true,
         where: { image_url: req.query.url },}
       ).then( (response) => {
-        console.log("response from searching db for matching urls: ", response);
+        console.log("In getSearches: response from searching db for matching urls: ", response);
         res.json(response);
       })
     }
@@ -257,10 +257,10 @@ module.exports = {
     })
 
   },
-  getItemsBySearchid: function(req,res) {
+  getItemsBySearchId: function(req,res) {
     console.log("The incoming query: ", req.query);
     //let SearchId = req.query.searchId;
-    let searchID = req.params.id;
+    let searchId = req.params.id;
     console.log("Searching for items with search ID of: ", searchId);
 
     db.Item.findAll( {
