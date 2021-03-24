@@ -207,18 +207,22 @@ module.exports = {
       console.log("About to save the items too.");
       console.log(req.body.data);
 
-      if (req.body.data.itemNames.items.length<1) {
+      if (req.body.data.itemNames.length<1) {
         throw('No items extracted.');
+        res.status(200).json(null);
       } else {
         
+          console.log("About to save items: ", req.body.data.itemNames);
 
-          for (let i = 0; i < req.body.data.itemNames.items.length; i++) {  // used to be itemNames
+          for (let i = 0; i < req.body.data.itemNames.length; i++) {  // used to be itemNames
             let itemObj = {
-              SearchId: searchId,
-              name: req.body.data.itemNames.items[i],  // used to be itemNames
+              searchId: searchId,
+              name: req.body.data.itemNames[i],  // used to be itemNames
             };
             bulkCreateArr.push(itemObj);
           }
+          console.log("Bulk Array: ", bulkCreateArr);
+
           db.Item.bulkCreate(bulkCreateArr, {
             returning: true,
           })
@@ -226,10 +230,12 @@ module.exports = {
               res.json(afterSave);
             })
             .catch((err) => {
+              console.log("There as a problem with the bulk saving of items:");
+              console.log(err);
               res.status(404).json({ err: err });
             });
       }
-      res.status(200).json({newSearch});
+      
 
     }).catch((err) => {
       console.log("Not able to save the search: ", err);
@@ -253,13 +259,14 @@ module.exports = {
   },
   getItemsBySearchid: function(req,res) {
     console.log("The incoming query: ", req.query);
-    let SearchId = req.query.searchId;
-    console.log("Searching for items with search ID of: ", SearchId);
+    //let SearchId = req.query.searchId;
+    let searchID = req.params.id;
+    console.log("Searching for items with search ID of: ", searchId);
 
     db.Item.findAll( {
       raw: true,
       where: {
-        searchId: SearchId
+        searchId: searchId
       }
     })
     .then( (items) => {

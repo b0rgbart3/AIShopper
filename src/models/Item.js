@@ -4,6 +4,10 @@ module.exports = function (sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    searchId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
     // image_url: {
     //   type: DataTypes.STRING
@@ -17,15 +21,15 @@ module.exports = function (sequelize, DataTypes) {
 
   });
 
-  Item.associate = function (models) {
+  // Item.associate = function (models) {
 
-    Item.belongsTo(models.Search, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
+  //   Item.belongsTo(models.Search, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
 
-  };
+  // };
 
 
   return Item;

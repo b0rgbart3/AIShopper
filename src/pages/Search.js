@@ -21,15 +21,22 @@ function Search(){
       console.log("payload to save search: ", payload);
       API.saveSearch(payload)
         .then((response) => {
-          console.log("Search saved", response.data);
+          // the response will be the items array - 
+          // so we need to save our original payload, and the response
+
+          console.log("Search info saved", response.data);
           dispatch({ type: SEARCH_SAVED, searchSaved: true });
+          dispatch({ type: ADD_SEARCH_DETAIL, 
+            newSearch: { 'image_url': payload.image_url, 'items': response.data} });
+          
         })
         .catch((err) => {
-          console.log("Save not successfull");
+          console.log("Saving of this search info was not successfull");
         })
         .finally(() => {
-          console.log("Finally done saving the search, about to update state.");
-          dispatch({ type: ADD_SEARCH_DETAIL, newSearch: payload.itemNames });
+          console.log("Finally done saving the search, and updating the state.");
+          history.push('/results');
+        //  dispatch({ type: ADD_SEARCH_DETAIL, newSearch: payload.itemNames });
         });
   
      
@@ -80,10 +87,20 @@ function Search(){
               if (state.User) {
                   thisUserId = state.User.id;
               }
-              let payload = { UserId: thisUserId, image_url: state.CurrentSearch.image_url,
-                  itemNames: res.data };
+             
               
               if (res.data.items.length > 0) {
+                // remove duplicate items...
+
+                let uniqueItems = [];
+                res.data.items.map((item,index) => {
+                  if (uniqueItems.indexOf(item) == -1) {
+                    uniqueItems.push(item);
+                  }
+                });
+                let payload = { UserId: thisUserId, image_url: state.CurrentSearch.image_url,
+                  itemNames: uniqueItems };
+
                 saveSearch( payload );
               } else {
                 console.log("Google Image AI wasn't able to extract any items.");
@@ -108,7 +125,17 @@ function Search(){
 
           } else {
               console.log('Found this as an existing searched url.');
+              console.log('Search Data: ', existingSearches.data);
+              // query the DB to get the items associated with this search
+              let searchId = existingSearches.data[0].id;
+              console.log('Search Id: ', searchId);
+              API.getItems(searchId).then((items) => {
+                console.log("Got these items: ", items);
+              }).catch((err) =>{console.log(err);});
+
           }
+     }).catch((err) => {
+       console.log("Error searching for the search:", err);
      });
 
 

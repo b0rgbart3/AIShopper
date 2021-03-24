@@ -35,9 +35,9 @@ const ShopprContext = createContext(
     has_url: false,
     CurrentSearch: {
         image_url: "",
-        image_blob: "",
+       // image_blob: "",
         items: [],
-        basedOnExistingSearch: false,
+       // basedOnExistingSearch: false,
     },
     isOnline: true,
     current_search_item : 0,
@@ -97,6 +97,7 @@ const reducer = (state, action) => {
 
       // Here we are performing a new search - so lets go ahead and also
       // set the Friend's searches info for comparison
+      console.log("In the Global state, setting searchDetails to: ", action.newSearch);
       
       return {...state, CurrentSearch: action.newSearch, loading:false}
   
@@ -142,8 +143,9 @@ const reducer = (state, action) => {
       ...state, has_url: false, currentSearch: { image_url: null }, currentPath: action.currentPath
     }
   case SEARCH_SAVED:
+    console.log("In the Global state, setting searchSaved to: ", action.searchSaved);
     return {
-      ...state,searchSaved: action.searchSaved, loading: false
+      ...state, searchSaved: action.searchSaved, loading: false
     }
 
   default:

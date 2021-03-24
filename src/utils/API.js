@@ -49,7 +49,7 @@ export default {
     },
     getItems: function(searchId) {
         console.log("Getting items for searchID: ", searchId);
-        return axios.get("/api/itemsBySearchId?searchId="+searchId);
+        return axios.get("/api/itemsBySearchId/"+searchId);
     },
     getFriendsSearches: function( { friendsIds, item }) {
         console.log( "{friendsIds:", friendsIds,", item:,",item,"}");

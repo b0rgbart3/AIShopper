@@ -57,6 +57,7 @@ async function connectToDB() {
         db.sequelize = sequelize;   // this is a reference to our sequelize connection instance
         db.Sequelize = Sequelize;   // this is a reference to the Sequelize base code Library
         console.log("Finished creating the db models.");
+        db.sequelize.sync({ force: true });
       }
 }
 
