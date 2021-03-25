@@ -11,23 +11,24 @@ function Search(){
     const url = useRef();
     const [localUrl, setLocalUrl] = useState('');
     const [localSearches, setLocalSearches] = useState([]);
+    const name = "";
 
-    // useEffect(() => {
-    //   console.log('Entering the search page:', localUrl);
+    useEffect(() => {
+        const getSearches = async() => {
+        const response = await API.getSearches();
+        const data = await response.data;
+        setLocalSearches(data);
+      }
+      getSearches();
 
-    //  // dispatch({ type: ENTER_URL, url: '' });
-    // }, [localUrl]);
+    }, [name]);
 
-    useEffect(()=> {
-
-      API.getSearches().then((response) => {
-        console.log("Got these searches:", response);
-        setLocalSearches(response.data);
-      }).catch((err) => {
-        console.log("Error loading previous searches:", err);
-      });
-    }, [localSearches] );
-    
+    // API.getSearches().then((response) => {
+    //   console.log("Got these searches:", response);
+    //   setLocalSearches(response.data);
+    // }).catch((err) => {
+    //   console.log("Error loading previous searches:", err);
+    // });
 
     function saveSearch(payload) {
       console.log("payload to save search: ", payload);
@@ -76,10 +77,10 @@ function Search(){
         }
 
     }
-    function analyze() {
+    function analyze( url ) {
+//state.CurrentSearch.image_url
 
-
-      API.checkIfUrlWasAlreadyAnalyzed(state.CurrentSearch.image_url).then(
+      API.checkIfUrlWasAlreadyAnalyzed( url ).then(
         (existingSearches) => {
           console.log("Back from the API, length:");
          // setExistingSearch(existingSearches);
@@ -162,17 +163,33 @@ function Search(){
       // history.push('/analyze');
     }
 
+    function selectSearch(search) {
+      console.log("User has chosen: ", search);
+      analyze(search.image_url);
+      // dispatch({ type: ADD_SEARCH_DETAIL, 
+      //   newSearch: { 'image_url': search.image_url, 'items': search.items} });
+      //  history.push('/results');
+    }
+
+
+
+
+    
+
     return (
       <div className='search'>
       <div className=''>
-      <h1>Previous Searches:</h1>
+      <h1>previous searches:</h1>
       { localSearches ? (<div className='thumbs'>
       {localSearches.map((search,index) => (
-        <div key={index} className='thumb'><img src={search.image_url}/></div>
+        <div key={index} className='thumb'>
+        <img src={search.image_url} onClick={()=>{selectSearch(search)}} />
+        </div>
       ))}
-      </div>): (<div></div>)}
+      </div>): (<div><p>No previous search images were found.</p></div>)}
       </div>
-        <h1>enter an image url:</h1>
+      <hr />
+        <h1>enter a new image url:</h1>
         <form onSubmit={(e)=>validateUrl(e,url.current.value)}>
             <input ref={url} type="text"/>
             <input type='submit' value='enter' />
@@ -183,7 +200,7 @@ function Search(){
           <div className='analyzeImage'>
           <img src={state.CurrentSearch.image_url} alt='about_to_analyze'/>
           </div>
-          <button className='pill-style' onClick={analyze}>Analyze this image</button>
+          <button className='pill-style' onClick={()=>{analyze(state.CurrentSearch.image_url);}}>Analyze this image</button>
       
         </div> ) : ( <div></div> ) }
       </div>     
