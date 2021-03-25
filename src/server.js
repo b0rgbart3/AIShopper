@@ -22,6 +22,9 @@ app.get('/api/searches', (req,res) => {
 app.get('/api/itemsBySearchId/:id', (req,res) => {
   shopprController.getItemsBySearchId(req,res);
 });
+app.get('/api/products/:item', (req,res) => {
+  shopprController.getProducts(req,res);
+});
 app.post('/api/extractUrl', (req,res) => {
   shopprController.extractFromUrl(req,res);
 });

@@ -371,7 +371,7 @@ module.exports = {
     // take the spaces out and convert to a singluar version
     item = pluralize.singular(item.replace(/\s/g, ''));
 
- //   console.log("In Controller getProducts: item:", item);
+    console.log("In Controller getProducts: item:", item);
 
     if (staticProducts.includes(item)) {
     //  console.log("About to load the static json file: ", item+".json");

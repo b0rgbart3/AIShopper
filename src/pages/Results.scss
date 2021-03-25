@@ -22,6 +22,39 @@
 
 }
 
+.productChart {
+    display:flexbox;
+    text-align: center;
+    flex-direction: column;
+}
+.product {
+    border:2px solid gray;
+    border-radius:12px;
+    display:inline-block;
+    max-width:200px;
+    vertical-align: top;
+    margin:auto;
+    background-color:white;
+    min-height:240px;
+}
+
+.product h1 {
+    font-size:16px;
+    padding-left:12px;
+    padding-right:12px;
+    text-align: left;
+}
+
+.productImage {
+    border:2px solid black;
+    min-width:100%;
+    min-height:100px;
+    max-height:100px;
+    overflow: hidden;
+}
+.product img {
+    width:100%;
+}
 @media only screen and(min-width:800px) {
 
     .results {
