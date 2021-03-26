@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default {
+let API =  {
     checkIfUrlWasAlreadyAnalyzed: function(imageUrl) {
         console.log('checking: ', imageUrl);
         return axios.get("/api/findSearchByUrl?url="+imageUrl);
@@ -75,3 +75,5 @@ export default {
         return axios.post("/api/saveProducts",{data:payload});
     }
 };
+
+export default API;

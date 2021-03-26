@@ -106,8 +106,8 @@ function Search(){
                 // remove duplicate items...
 
                 let uniqueItems = [];
-                res.data.items.map((item,index) => {
-                  if (uniqueItems.indexOf(item) == -1) {
+                res.data.items.forEach((item,index) => {
+                  if (uniqueItems.indexOf(item) === -1) {
                     uniqueItems.push(item);
                   }
                 });
@@ -183,7 +183,7 @@ function Search(){
       { localSearches ? (<div className='thumbs'>
       {localSearches.map((search,index) => (
         <div key={index} className='thumb'>
-        <img src={search.image_url} onClick={()=>{selectSearch(search)}} />
+        <img src={search.image_url} alt={search.title} onClick={()=>{selectSearch(search)}} />
         </div>
       ))}
       </div>): (<div><p>No previous search images were found.</p></div>)}

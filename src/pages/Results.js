@@ -53,7 +53,7 @@ function Results(){
         <>
         <div className='results'>
             <div className='resultImage'>
-            <img src={state.CurrentSearch.image_url} />
+            <img src={state.CurrentSearch.image_url} alt='current_search'/>
             </div>
             <div className='resultData'>
                 <h1>Google Vision AI found:</h1>
@@ -65,14 +65,14 @@ function Results(){
             </div>
         </div>
         <div className='products'>
-        { item!=='' ? ( <h1>{pluralize(item) } found on Amazon:</h1>) : (<h1></h1>) }
+        { item!=='' ? ( <h1>{pluralize(item) } found on Amazon:</h1>) :(<></>) }
        
             {products ? (<div className='productChart'>
 
                 {products.map((product, index) => (
                     <div className='product' key={index}>
                         <div className='productImage'>
-                            <img src={product.image} />
+                            <img src={product.image} alt={`${product.title.substring(0,60)}`} />
                         </div>
                     <h1>{product.title.substring(0,60)}</h1>
                  {product.price ? (<p className='price'>{product.price.raw}</p>) : (<p className='price'>price not listed</p>)}

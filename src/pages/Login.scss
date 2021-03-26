@@ -1,0 +1,48 @@
+@import "../Colors.scss";
+
+
+.login {
+    padding:20px;
+    text-align: center;
+}
+.login h1 {
+    font-size:40px;
+    letter-spacing:-.03em;
+}
+
+.login label {
+    display:block;
+    font-weight:700;
+    font-size:20px;
+}
+
+.login input {
+    background-color:white;
+    box-shadow:0 0 12px rgba(200,200,200,.4);
+    padding:14px;
+    border-radius:29px;
+    padding-left:64px;
+    box-sizing: border-box;
+    padding-right:64px;
+    font-size:16px;
+    border:none;
+    margin:auto;
+    box-sizing: border-box;
+    width:90%;
+    outline:none;
+    border: 2px solid #dddddd;
+    margin-bottom:10px;
+}
+.login input:focus {
+    outline:none;
+    border: 2px solid $button-color;
+    
+}
+
+.login input[type='submit'] {
+    @include pill-style;
+}
+
+.login input[type='submit']:hover {
+    @include pill-hover;
+}

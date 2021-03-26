@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Search from './pages/Search';
 import Analyze from './pages/Analyze';
 import Results from './pages/Results';
+import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 
 // import { ToastProvider } from 'react-toast-notifications'
@@ -27,6 +28,7 @@ function App() {
             <Route path='/search' component={Search} />
             <Route path='/analyze' component={Analyze} />
             <Route path='/results' component={Results} />
+            <Route path='/login' component={Login} />
             <Route component={NotFound} />
           </Switch>
           <Footer />
