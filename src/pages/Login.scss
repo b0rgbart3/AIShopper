@@ -1,22 +1,27 @@
 @import "../Colors.scss";
 
+.creds {
+    display:grid;
+    grid-template-columns: 1fr;
+}
 
-.login {
+.login, .create {
+
     padding:20px;
     text-align: center;
 }
-.login h1 {
+.login h1, .create h1 {
     font-size:40px;
     letter-spacing:-.03em;
 }
 
-.login label {
+.login label, .create label {
     display:block;
     font-weight:700;
     font-size:20px;
 }
 
-.login input {
+.login input, .create input {
     background-color:white;
     box-shadow:0 0 12px rgba(200,200,200,.4);
     padding:14px;
@@ -33,16 +38,23 @@
     border: 2px solid #dddddd;
     margin-bottom:10px;
 }
-.login input:focus {
+.login input:focus, .create input:focus {
     outline:none;
     border: 2px solid $button-color;
     
 }
 
-.login input[type='submit'] {
+.login input[type='submit'], .create input[type='submit'] {
     @include pill-style;
 }
 
-.login input[type='submit']:hover {
+.login input[type='submit']:hover, .create input[type='submit']:hover {
     @include pill-hover;
+}
+
+@media only screen and (min-width:800px) {
+    .creds {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }

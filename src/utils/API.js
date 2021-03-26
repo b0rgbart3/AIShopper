@@ -5,7 +5,7 @@ let API =  {
         console.log('checking: ', imageUrl);
         return axios.get("/api/findSearchByUrl?url="+imageUrl);
     },
-    createNewUser: function(User) {
+    create: function(User) {
         console.log("In the API: ", User);
         return axios.post("/api/signup", User);
     },

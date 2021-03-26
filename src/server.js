@@ -30,6 +30,12 @@ app.post('/api/extractUrl', (req,res) => {
 });
 app.post('/api/saveSearch', (req, res) => {
   shopprController.saveSearch(req,res);
+});
+app.post('/api/login', (req,res) => {
+  shopprController.login(req,res);
+});
+app.post('/api/signup', (req,res) => {
+  shopprController.create(req,res);
 })
 
 

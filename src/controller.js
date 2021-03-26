@@ -38,13 +38,25 @@ async function extractObjectFromImageURL(url) {
 
 // Defining methods for the booksController
 module.exports = {
+  login: function(req,res) {
+    db.User.findOne({
+      where: { email: req.body.email },}
+    ).then( (response) => {
+      console.log("Found user account: ", response);
+      res.json(response);
+    })
+    .catch((err) => {
+      res.status(401).json(err);
+    })
+  },
+
   create: function (req, res) {
     console.log("In side the controller create: ", req.body);
     // res.end("In the create route in the controller.");
     db.User.create({
       email: req.body.email.toLowerCase(),
       username: req.body.email.toLowerCase(),
-      password: req.body.password,
+      password: req.body.p,
     })
       .then(function (newUser) {
         console.log("In the then method of the controller create: ", newUser);
