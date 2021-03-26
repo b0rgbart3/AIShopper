@@ -3,10 +3,12 @@ import { useShopprContext } from "../utils/GlobalState";
 import './Results.scss';
 import { LOADING, STOP_LOADING } from "../utils/actions";
 import API from "../utils/API";
+import pluralize from 'pluralize';
 
 function Results(){
     const [state, dispatch ] = useShopprContext();
     const [products, setProducts ] = useState([]);
+    const [item, setItem] = useState('');
 
     function clipThis(title) {
         console.log('about to clip: ', title);
@@ -19,16 +21,23 @@ function Results(){
         let clippedVersion = titleArr.join(' ');
         return clippedVersion;
     }
-    function choose(item) {
-        console.log('Item chosen: ', item.name);
+    function choose(itemName) {
+        setItem(itemName.name);
+        console.log('Item chosen: ', itemName.name);
 
         dispatch({ type: LOADING });
-        API.getProducts(item.name)
+        API.getProducts(itemName.name)
         .then((results) => {
           //setItemList(results.data);
           console.log("PRODUCT RESULTS: ", results);
           let clippedTitles = results.data.map((product) => {
-              return {image: product.image, title: clipThis(product.title) }
+            let productData;
+            if (product.price) {
+               productData = {image: product.image, title: clipThis(product.title), price: product.price };
+            } else {
+                productData = {image: product.image, title: clipThis(product.title) }
+            }
+              return productData;
           })
           setProducts(clippedTitles);
           dispatch({ type: STOP_LOADING });
@@ -39,7 +48,7 @@ function Results(){
         });
 
     }
-
+    console.log(products);
     return (
         <>
         <div className='results'>
@@ -47,15 +56,17 @@ function Results(){
             <img src={state.CurrentSearch.image_url} />
             </div>
             <div className='resultData'>
-                <h1>Google Vision AI found these items:</h1>
+                <h1>Google Vision AI found:</h1>
                 <ul>
-                    {state.CurrentSearch.items.map((item,index)=>(
-                        <li key={index} onClick={()=> { choose(item); }}>{item.name}</li>
+                    {state.CurrentSearch.items.map((itemName,index)=>(
+                        <li key={index} onClick={()=> { choose(itemName); }}>{itemName.name}</li>
                     ))}
                 </ul>
             </div>
         </div>
         <div className='products'>
+        { item!=='' ? ( <h1>{pluralize(item) } found on Amazon:</h1>) : (<h1></h1>) }
+       
             {products ? (<div className='productChart'>
 
                 {products.map((product, index) => (
@@ -64,6 +75,8 @@ function Results(){
                             <img src={product.image} />
                         </div>
                     <h1>{product.title.substring(0,60)}</h1>
+                 {product.price ? (<p className='price'>{product.price.raw}</p>) : (<p className='price'>price not listed</p>)}
+                    
                   
                     </div>
                 ))}

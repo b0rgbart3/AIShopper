@@ -363,6 +363,7 @@ module.exports = {
     }
   },
   getProducts: function (req, res) {
+    console.log('Getting products.');
     if (!req.params.item) {
       res.end({error:"undefined search query"});
     }
