@@ -1,4 +1,6 @@
-const passport = require("passport");
+//const passport = require("passport");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
@@ -36,38 +38,68 @@ async function extractObjectFromImageURL(url) {
   return objectNames;
 }
 
-// Defining methods for the booksController
+// Defining methods for the controller
 module.exports = {
+  //
+  //
+  //  LOGIN - a user
+  //
+  //
   login: function(req,res) {
     db.User.findOne({
       where: { email: req.body.email },}
     ).then( (response) => {
-      console.log("Found user account: ", response);
-      res.json(response);
-    })
-    .catch((err) => {
-      res.status(401).json(err);
-    })
+
+    
+      const login = async function()  {
+          console.log("Found user account: ", response);
+        
+          console.log("looking for a match for: ", req.body.p, ", and : ", response.dataValues.password);
+          const match = await bcrypt.compare(req.body.p, response.dataValues.password);
+          console.log("Match: ", match);
+          return match;
+
+        }
+      let ok=login();
+      if (ok) {
+        res.json(response);
+      } else {
+        throw('incorrect credentials');
+      }
+        
+      }).catch((err)=>{console.log(err)});
   },
+//
+//  CREATE a New User Account
+//
+//
 
   create: function (req, res) {
     console.log("In side the controller create: ", req.body);
     // res.end("In the create route in the controller.");
-    db.User.create({
-      email: req.body.email.toLowerCase(),
-      username: req.body.email.toLowerCase(),
-      password: req.body.p,
-    })
-      .then(function (newUser) {
-        console.log("In the then method of the controller create: ", newUser);
 
-        // res.redirect("/login");
-        // Why does this redirect not work??
-        res.json(newUser);
+    bcrypt.hash(req.body.p, saltRounds).then((hash) => {
+      // Store hash in your password DB.
+      console.log("Out of password:", req.body.p, ", Created the hash:", hash);
+      db.User.create({
+        email: req.body.email.toLowerCase(),
+        username: req.body.email.toLowerCase(),
+        password: hash,
       })
-      .catch(function (err) {
-        res.status(401).json(err);
-      });
+        .then(function (newUser) {
+          console.log("In the then method of the controller create: ", newUser);
+  
+          // res.redirect("/login");
+          // Why does this redirect not work??
+          res.json(newUser);
+        })
+        .catch(function (err) {
+          res.status(401).json(err);
+        });
+
+  }).catch((err) => {console.log("error creating the encryption of the password:", err)});
+
+    
   },
 
   findFriend: function (req, res) {
