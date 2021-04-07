@@ -33,6 +33,9 @@ let API =  {
     let apiKey = `key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`;
         return axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lattitude},${longitude}&${radius}&${type}&${keyword}&${apiKey}`);
     },
+    getUsers: function() {
+        return axios.get("/api/users");
+    },
     getFriends: function(UserId) {
 
         return axios.get("/api/getfriends/"+UserId);

@@ -46,61 +46,89 @@ module.exports = {
   //
   //
   login: function(req,res) {
+
+
+
     db.User.findOne({
       where: { email: req.body.email },}
-    ).then( (response) => {
+    ).then( (foundUser) => {
 
-    
-      const login = async function()  {
-          console.log("Found user account: ", response);
-        
-          console.log("looking for a match for: ", req.body.p, ", and : ", response.dataValues.password);
-          const match = await bcrypt.compare(req.body.p, response.dataValues.password);
-          console.log("Match: ", match);
-          return match;
-
+      console.log("found user in DB: ", foundUser.dataValues);
+      console.log("comparing: ", req.body.p, ", with: ", foundUser.dataValues.password);
+      bcrypt
+      .compare(req.body.p, foundUser.dataValues.password)
+      .then((approved) => {
+        console.log( "BCRYPT COMPARED: ", approved);
+        if (approved) { res.status(200).json(foundUser)} else {
+          throw ("incorrect credentials");
         }
-      let ok=login();
-      if (ok) {
-        res.json(response);
-      } else {
-        throw('incorrect credentials');
-      }
         
-      }).catch((err)=>{console.log(err)});
-  },
+      })
+      .catch(err => console.error(err.message));
+
+  }) 
+
+},
 //
 //  CREATE a New User Account
 //
 //
 
+//'$2b$10$AWuX/QhoKnmDj6D2np8QXuSXUxwyYS7zz0cng.21p9zEws7RS/1Iu'
+//$2b$10$AWuX/QhoKnmDj6D2np8QXuSXUxwyYS7zz0cng.21p9zEws7RS/1Iu
+
   create: function (req, res) {
     console.log("In side the controller create: ", req.body);
     // res.end("In the create route in the controller.");
+  //   bcrypt.genSalt(saltRounds)
+  //   .then( salt => {
+  //     console.log(`Salt: ${salt}`);
 
-    bcrypt.hash(req.body.p, saltRounds).then((hash) => {
-      // Store hash in your password DB.
-      console.log("Out of password:", req.body.p, ", Created the hash:", hash);
-      db.User.create({
-        email: req.body.email.toLowerCase(),
-        username: req.body.email.toLowerCase(),
-        password: hash,
-      })
-        .then(function (newUser) {
-          console.log("In the then method of the controller create: ", newUser);
+  //     return bcrypt.hash(req.body.p, salt); 
+  //   })
+      
+  //     .then((hashphrase) => {
+  //       // Store hash in your password DB.
+  //       console.log("Out of password:", req.body.p, ", Created the hash:", hashphrase);
+  //       db.User.create({
+  //         email: req.body.email.toLowerCase(),
+  //         username: req.body.email.toLowerCase(),
+  //         password: hashphrase,
+  //       })
+  //         .then(function (newUser) {
+  //           console.log("In the then method of the controller create: ", newUser);
+    
+  //           // res.redirect("/login");
+  //           // Why does this redirect not work??
+  //           res.json(newUser);
+  //         })
+  //         .catch(err => 
+  //           console.error(err.message));
   
-          // res.redirect("/login");
-          // Why does this redirect not work??
-          res.json(newUser);
-        })
-        .catch(function (err) {
-          res.status(401).json(err);
-        });
-
-  }).catch((err) => {console.log("error creating the encryption of the password:", err)});
 
     
-  },
+    
+  // })
+
+      bcrypt
+      .hash(req.body.p, saltRounds)
+      .then(hash => {
+        console.log(`Hash: ${hash}`);
+        // Store hash in your password DB.
+        db.User.create({
+                  email: req.body.email.toLowerCase(),
+                  username: req.body.email.toLowerCase(),
+                  password: hash,
+                })
+                  .then(function (newUser) {
+                    console.log("In the then method of the controller create: ", newUser);
+                    res.JSON(newUser);
+                  })
+                  .catch(err => 
+                    console.error(err.message));
+      })
+      .catch(err => console.error(err.message));
+},
 
   findFriend: function (req, res) {
     console.log("In the controller - finding Friend: ", req.body.searchTerm);
@@ -201,6 +229,17 @@ module.exports = {
     } else {
       res.end();
     }
+  },
+  getUsers: function(req,res) {
+    let users = [];
+
+    db.User.findAll({
+      raw:true
+    })
+    .then((users)=> {
+      res.json(users);
+    })
+    .catch((err) => console.log(err));
   },
 
   getFriendsSearches: function (req, res) {

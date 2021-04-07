@@ -25,6 +25,9 @@ app.get('/api/itemsBySearchId/:id', (req,res) => {
 app.get('/api/products/:item', (req,res) => {
   shopprController.getProducts(req,res);
 });
+app.get('/api/users', (req,res) => {
+  shopprController.getUsers(req,res);
+});
 app.post('/api/extractUrl', (req,res) => {
   shopprController.extractFromUrl(req,res);
 });
@@ -35,6 +38,7 @@ app.post('/api/login', (req,res) => {
   shopprController.login(req,res);
 });
 app.post('/api/signup', (req,res) => {
+  console.log('api signup:');
   shopprController.create(req,res);
 })
 

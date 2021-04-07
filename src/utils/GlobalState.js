@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useContext } from "react";
 import {
-    LOGIN_USER,
+    LOGIN,
     LOGOUT, 
     CREATE_USER,
     GET_USER,
@@ -22,18 +22,18 @@ import {
 
 const ShopprContext = createContext(
 {
-    User: {
+    user: {
         id: "",
         name: "",
         email: "",
         avatar: ""
     },
-    Friends:[],  // array of friend (User) ids
+    friends:[],  // array of friend (User) ids
 
-    PreviousSearches: [{}],
+    previousSearches: [{}],
 
     has_url: false,
-    CurrentSearch: {
+    currentSearch: {
         image_url: "",
        // image_blob: "",
         items: [],
@@ -51,18 +51,18 @@ const { Provider } = ShopprContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case LOGIN_USER:
+    case LOGIN:
       
       console.log("Setting the new state to include this new user:", action.user);
-      return { ...state, User: action.user, loading:false};
+      return { ...state, user: action.user, loading:false};
   case LOGOUT:
     console.log("In the logout method of the dispatcher.");
-    return {...state, User: null };
+    return {...state, user: null };
 
   case CREATE_USER:
     return {
       ...state,
-      User: action.user,
+      user: action.user,
       loading: false
     };
   case GET_USER:
@@ -76,7 +76,7 @@ const reducer = (state, action) => {
         console.log('Inside global state add friend: ',largerFriends);
       return {
           ...state, 
-          Friends: largerFriends,
+          friends: largerFriends,
         loading:false
       }
   case REMOVE_FRIEND:
@@ -84,14 +84,14 @@ const reducer = (state, action) => {
 
     return {
         ...state, 
-        Friends: lessFriends,
+        friends: lessFriends,
         loading:false}
   case SET_FRIENDS:
     return {...state, Friends: action.friends}
   
   case ENTER_URL:
     console.log("In GS setting image_url to: ", action.url);
-    return {...state, has_url: true, CurrentSearch: { image_url: action.url } }
+    return {...state, has_url: true, currentSearch: { image_url: action.url } }
 
   case ADD_SEARCH_DETAIL:
 
@@ -99,20 +99,20 @@ const reducer = (state, action) => {
       // set the Friend's searches info for comparison
       console.log("In the Global state, setting searchDetails to: ", action.newSearch);
       
-      return {...state, CurrentSearch: action.newSearch, loading:false}
+      return {...state, currentSearch: action.newSearch, loading:false}
   
   case GET_PREVIOUS_SEARCHES:
     return {
         ...state, 
-        PreviousSearches: action.previousSearches,
+        previousSearches: action.previousSearches,
         loading:false
     }
   case REMOVE_PREVIOUS_SEARCH:
-    let newPreviousSearches = state.PreviousSearches.filter( 
+    let newpreviousSearches = state.previousSearches.filter( 
         search => search !== action.searchID )
       return {
           ...state,
-          PreviousSearches: newPreviousSearches, loading:false
+          previousSearches: newpreviousSearches, loading:false
       }
   case LOADING:
     console.log(state.loading);
@@ -160,9 +160,9 @@ const ShopprProvider = ({ value = [], ...props }) => {
       User: null,
     Friends:[],  // array of friend (User) ids
 
-    PreviousSearches: [{}],
+    previousSearches: [{}],
 
-    CurrentSearch: {
+    currentSearch: {
         image_url: "",
         image_blob: "",
         items: [

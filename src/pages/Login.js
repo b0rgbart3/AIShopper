@@ -1,12 +1,15 @@
 import React, { useRef } from 'react';
 import API from '../utils/API';
-// import { useShopprContext } from "../utils/GlobalState";
-// import { LOADING, STOP_LOADING } from "../utils/actions";
+import { useShopprContext } from "../utils/GlobalState";
+import { LOGIN, LOADING, STOP_LOADING } from "../utils/actions";
 // import API from "../utils/API";
+import "../App.scss";
 import "./Login.scss";
 
 
+
 function Login(){
+    const [state, dispatch] = useShopprContext();
 
     let email= useRef();
     let newEmail = useRef();
@@ -24,6 +27,8 @@ function Login(){
 
             API.login(User)
                 .then((newUser) => {
+                    console.log("Logged in new user: ", newUser);
+                    dispatch({ type: LOGIN, user: newUser.data });
 
                 })
                 .catch((err) => {
@@ -42,13 +47,18 @@ function Login(){
 
             API.create(User)
                 .then((newUser) => {
-
+                    console.log("Created new user:", newUser);
                 })
                 .catch((err) => {
                     console.log("Error creating user: ", err);
                 })
         }
     }
+
+    API.getUsers().then((users)=> {
+        console.log("Got users:", users);
+    }).catch((err) => {console.log(err)});
+
     return(
       
         <div className='creds'>

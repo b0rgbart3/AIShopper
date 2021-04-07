@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../App.scss";
-import "./Nav.css";
+import "./Nav.scss";
 
 const MobileMenu = (props) => {
   return (
