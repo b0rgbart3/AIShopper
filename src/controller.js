@@ -47,11 +47,12 @@ module.exports = {
   //
   login: function(req,res) {
 
-
+    console.log("In the login method of the controller:");
 
     db.User.findOne({
       where: { email: req.body.email },}
     ).then( (foundUser) => {
+
 
       console.log("found user in DB: ", foundUser.dataValues);
       console.log("comparing: ", req.body.p, ", with: ", foundUser.dataValues.password);
@@ -59,14 +60,17 @@ module.exports = {
       .compare(req.body.p, foundUser.dataValues.password)
       .then((approved) => {
         console.log( "BCRYPT COMPARED: ", approved);
-        if (approved) { res.status(200).json(foundUser)} else {
-          throw ("incorrect credentials");
-        }
+        if (approved) { res.status(200).json(foundUser)} 
         
       })
       .catch(err => console.error(err.message));
 
-  }) 
+  })  .catch((err) => {
+    console.log("In the catch block.");
+    res.status(500).json({ err: err });
+
+});
+  
 
 },
 //

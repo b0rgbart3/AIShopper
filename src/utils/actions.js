@@ -1,5 +1,7 @@
 
 
+export const TOAST = "TOAST";
+export const CLEAR_TOAST = "CLEAR_TOAST";
 // Users
 export const CREATE_USER = "CREATE_USER";
 export const GET_USER = "GET_USER";

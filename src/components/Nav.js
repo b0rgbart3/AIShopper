@@ -5,7 +5,7 @@ import "./Nav.scss";
 import Burger from "./Burger";
 import MobileMenu from "./MobileMenu";
 import { useShopprContext } from "../utils/GlobalState";
-import { LOGIN, LOADING, STOP_LOADING, LOGOUT } from "../utils/actions";
+import { LOGOUT } from "../utils/actions";
 
 
 const Nav = () => {
@@ -13,7 +13,7 @@ const Nav = () => {
     const [state, dispatch] = useShopprContext();
 
     let user = state.user;
-    console.log("In the navbar, user:", user);
+   // console.log("In the navbar, user:", user);
     
 function logout() {
     dispatch({ type: LOGOUT });
@@ -21,7 +21,7 @@ function logout() {
 
 function toggleMobileMenu(e) {
     e.preventDefault();
-    console.log("toggling mobile menu");
+   // console.log("toggling mobile menu");
     if (mobileOpen === '') {
         setMobileOpen('mobileMenuOpen');
     } else {

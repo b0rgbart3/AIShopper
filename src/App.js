@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ShopprProvider } from "./utils/GlobalState";
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import MyToast from "./components/MyToast";
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Analyze from './pages/Analyze';
@@ -23,6 +24,7 @@ function App() {
         <ShopprProvider>
         {/* Switch statement makes sure that only one route is chosen. */}
           <Nav/>
+          <MyToast />
           <Switch>
             <Route path='/' component={Home} exact/>
             <Route path='/search' component={Search} />

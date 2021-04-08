@@ -1,5 +1,7 @@
 import React, { createContext, useReducer, useContext } from "react";
 import {
+    TOAST, 
+    CLEAR_TOAST,
     LOGIN,
     LOGOUT, 
     CREATE_USER,
@@ -22,6 +24,7 @@ import {
 
 const ShopprContext = createContext(
 {
+    toast: [{}],
     user: {
         id: "",
         name: "",
@@ -51,6 +54,34 @@ const { Provider } = ShopprContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case TOAST:
+      console.log("In GS: got a toast request: ", state.toast);
+      let toasts = [];
+      if (!state.toast) {
+        toasts = [action.toast];
+      } else {
+        toasts = state.toast;
+        toasts =[ ...state.toast, 
+          action.toast];
+      }
+      console.log("In GS: setting toast object to: ", toasts);
+      return {...state, toast: toasts };
+    case CLEAR_TOAST:
+      if (state.toast) {
+       // console.log("In GS before clearing, length == ", state.toast.length);
+      }     
+      let lessToast;
+      if (state.toast) {
+        lessToast = [...state.toast];
+      } 
+     
+      if (lessToast && lessToast.length > 0) {
+        lessToast.shift();
+      } else {
+        lessToast = null;
+      }
+     // console.log("In Global state, clearing one of the toast:", lessToast);
+      return {...state, toast: lessToast };
     case LOGIN:
       
       console.log("Setting the new state to include this new user:", action.user);

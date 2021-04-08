@@ -1,11 +1,10 @@
 import React, { useRef } from 'react';
 import API from '../utils/API';
 import { useShopprContext } from "../utils/GlobalState";
-import { LOGIN, LOADING, STOP_LOADING } from "../utils/actions";
+import { LOGIN, TOAST, LOADING, STOP_LOADING } from "../utils/actions";
 // import API from "../utils/API";
 import "../App.scss";
 import "./Login.scss";
-
 
 
 function Login(){
@@ -27,12 +26,19 @@ function Login(){
 
             API.login(User)
                 .then((newUser) => {
-                    console.log("Logged in new user: ", newUser);
+                    if (newUser.status === 200) {
+                   // console.log("Logged in new user: ", newUser);
                     dispatch({ type: LOGIN, user: newUser.data });
+                    } else {
+                        //console.log("Error logging in.");
+                        throw("Error logging in.");
+                    }
 
                 })
                 .catch((err) => {
-                    console.log("Error logging in: ", err);
+                    console.log("Dispatching an Error from the Login Component: ");
+                    dispatch({ type: TOAST, toast: {type:"error", message:"Bad Login"} });
+                    
                 })
         }
     }
@@ -56,7 +62,7 @@ function Login(){
     }
 
     API.getUsers().then((users)=> {
-        console.log("Got users:", users);
+       // console.log("Got users:", users);
     }).catch((err) => {console.log(err)});
 
     return(
