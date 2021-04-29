@@ -17,7 +17,17 @@ function Search(){
         const getSearches = async() => {
         const response = await API.getSearches();
         const data = await response.data;
-        setLocalSearches(data);
+        console.log(data);
+        // checking to see if these images actually load...
+        let goodData = [];
+        data.forEach( (image) => {
+           let imgObject = new Image(100,100);
+           imgObject.src = image.image_url;
+           if (imgObject.complete) {
+            goodData.push(image);
+           }
+        })
+        setLocalSearches(goodData);
       }
       getSearches();
 
@@ -58,13 +68,15 @@ function Search(){
     // when the user enters a url, this function will validate it
     function validateUrl(e, urlString) {
         e.preventDefault();
-        console.log(urlString);
+        console.log("About to validate: ", urlString);
         let tempUrlString = urlString.trim();
+        console.log("tempUrlString: ", tempUrlString);
         let regex = /(http(s?):)*\.(?:jpg|png)/;
         if (tempUrlString.match(regex)) {
             setLocalUrl(tempUrlString);
+            console.log("Local url: ", tempUrlString);
             dispatch({ type: ENTER_URL, url: tempUrlString });
-            console.log("Local url: ", localUrl);
+            console.log("Local url: ", tempUrlString);
             // console.log("about to redirect.");
             // history.push('/view');
         } else {
@@ -90,7 +102,7 @@ function Search(){
               // Didn't find a previous search, so we need to send it to 
               // the GoogleAPI
 
-              API.extractUrl(state.CurrentSearch.image_url)
+              API.extractUrl(state.currentSearch.image_url)
               .then((res) => {
               console.log("here is the image uploaded res", res);
 
@@ -111,7 +123,7 @@ function Search(){
                     uniqueItems.push(item);
                   }
                 });
-                let payload = { UserId: thisUserId, image_url: state.CurrentSearch.image_url,
+                let payload = { UserId: thisUserId, image_url: state.currentSearch.image_url,
                   itemNames: uniqueItems };
 
                 saveSearch( payload );
@@ -179,13 +191,13 @@ function Search(){
     return (
       <div className='search'>
       <div className=''>
-      <h1>previous searches:</h1>
-      { localSearches ? (<div className='thumbs'>
+
+      { localSearches ? (      <div><h1>previous searches:</h1><div className='thumbs'>
       {localSearches.map((search,index) => (
         <div key={index} className='thumb'>
         <img src={search.image_url} alt={search.title} onClick={()=>{selectSearch(search)}} />
         </div>
-      ))}
+      ))}</div>
       </div>): (<div><p>No previous search images were found.</p></div>)}
       </div>
       <hr />
@@ -195,12 +207,12 @@ function Search(){
             <input type='submit' value='enter' />
         </form> 
 
-{ localUrl !== '' ? (
+{ state.has_url ? (
         <div className='analyze'>
           <div className='analyzeImage'>
-          <img src={state.CurrentSearch.image_url} alt='about_to_analyze'/>
+          <img src={state.currentSearch.image_url} alt='about_to_analyze'/>
           </div>
-          <button className='pill-style' onClick={()=>{analyze(state.CurrentSearch.image_url);}}>Analyze this image</button>
+          <button className='pill-style' onClick={()=>{analyze(state.currentSearch.image_url);}}>Analyze this image</button>
       
         </div> ) : ( <div></div> ) }
       </div>     

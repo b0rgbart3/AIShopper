@@ -53,12 +53,12 @@ function Results(){
         <>
         <div className='results'>
             <div className='resultImage'>
-            <img src={state.CurrentSearch.image_url} alt='current_search'/>
+            <img src={state.currentSearch.image_url} alt='current_search'/>
             </div>
             <div className='resultData'>
                 <h1>Google Vision AI found:</h1>
                 <ul>
-                    {state.CurrentSearch.items.map((itemName,index)=>(
+                    {state.currentSearch.items.map((itemName,index)=>(
                         <li key={index} onClick={()=> { choose(itemName); }}>{itemName.name}</li>
                     ))}
                 </ul>
