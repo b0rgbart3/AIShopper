@@ -29,7 +29,9 @@ function Results(){
         API.getProducts(itemName.name)
         .then((results) => {
           //setItemList(results.data);
-          console.log("PRODUCT RESULTS: ", results);
+          console.log("In Results choose method, PRODUCT RESULTS: ", results.data);
+          console.log("type of", typeof(results.data));
+          console.log("# of products: ", results.data[0]);
           let clippedTitles = results.data.map((product) => {
             let productData;
             if (product.price) {

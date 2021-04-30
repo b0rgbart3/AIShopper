@@ -9,7 +9,7 @@ var Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const pluralize = require("pluralize");
 let db = require("./models");
-const staticProducts = ["bed", "bicycle", "bicyclewheel", "chair", "couch", "desk", "lamp", "laptop", "lighting", "loveseat", "pictureframe", "table" ];
+const staticProducts = ["bed", "bicycle", "bicyclewheel", "chair", "couch", "desk", "houseplant", "lamp", "laptop", "lighting", "loveseat", "pictureframe", "pillow", "table" ];
 
 async function extractObjectFromImageURL(url) {
   // [START vision_localize_objects_gcs]
@@ -169,7 +169,7 @@ module.exports = {
       raw: true,
     }
     ).then( (response) => {
-      console.log("In getALLSearches: response from searching db for matching urls: ", response);
+     // console.log("In getALLSearches: response from searching db for matching urls: ", response);
       res.json(response);
     }).catch ( (error) => {
       console.log("There was an error: ", error);
@@ -178,12 +178,12 @@ module.exports = {
   getSearchByUrl: function (req, res) {
 
     if (req.query) {
-      console.log("Searching searches for: ", req.query);
+   //   console.log("Searching searches for: ", req.query);
       db.Search.findAll( {
         raw: true,
         where: { image_url: req.query.url },}
       ).then( (response) => {
-        console.log("In getSearches: response from searching db for matching urls: ", response);
+      //  console.log("In getSearches: response from searching db for matching urls: ", response);
         res.json(response);
       })
     }
@@ -513,7 +513,7 @@ module.exports = {
       //  axios.get("/api/getRainForest/" + item)
       //  .then( (response) => {
 
-   //    console.log("back from Rainforest...", response.data.search_results);
+  console.log("back from Rainforest...", response.data.search_results);
        res.json(response.data.search_results);
       }).catch(err =>console.log(err));
     }

@@ -23,6 +23,7 @@ app.get('/api/itemsBySearchId/:id', (req,res) => {
   shopprController.getItemsBySearchId(req,res);
 });
 app.get('/api/products/:item', (req,res) => {
+  console.log("Getting products");
   shopprController.getProducts(req,res);
 });
 app.get('/api/users', (req,res) => {
