@@ -19,14 +19,14 @@
           "symbol": "$",
           "value": 36860,
           "currency": "USD",
-          "raw": "$33.99"
+          "raw": "$12.99"
         }
       ],
       "price": {
         "symbol": "$",
         "value": 34,
         "currency": "USD",
-        "raw": "$33.99"
+        "raw": "$12.99"
       },
       "delivery": {
         "price": {
@@ -37,5 +37,83 @@
           "is_free": true
         }
       }
-    }
+    },
+    {
+        "position": 2,
+        "title": "Stellhome Pack of 2 Rectangle Throw Pillow Covers Super Soft Solid Velvet Pillowcase for Bed Couch Sofa Bench, 12 x 20 inch",
+        "asin": "B07N993NP6",
+        "link": "https://www.amazon.com/Stellhome-Rectangle-Pillow-Covers-Pillowcase/dp/B07Q3PXVSH/ref=sr_1_4?dchild=1&keywords=throw+pillows+cyan&qid=1619743518&sr=8-4",
+        "categories": [
+          {
+            "name": "All Departments"
+          }
+        ],
+        "image": "https://m.media-amazon.com/images/I/71nkpll5RHL._AC_UL640_FMwebp_QL65_.jpg",
+        "is_prime": false,
+        "rating": 1,
+        "ratings_total": 1,
+        "sponsored": false,
+        "prices": [
+          {
+            "symbol": "$",
+            "value": 36860,
+            "currency": "USD",
+            "raw": "$33.99"
+          }
+        ],
+        "price": {
+          "symbol": "$",
+          "value": 34,
+          "currency": "USD",
+          "raw": "$33.99"
+        },
+        "delivery": {
+          "price": {
+            "symbol": "$",
+            "currency": "USD",
+            "value": 0,
+            "raw": "FREE Shipping",
+            "is_free": true
+          }
+        }
+      },
+      {
+        "position": 3,
+        "title": "DEZENE 16x16 Throw Pillow Cases Teal: 2 Pack Cozy Soft Velvet Square Decorative Pillow Covers for Farmhouse Home",
+        "asin": "B07N993NP6",
+        "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_aps_sr_pg1_1?ie=UTF8&adId=A08808392MG72KW78KP75&url=%2FDEZENE-Decorative-Rectangular-Pillowcases-Farmhouse%2Fdp%2FB07SB55CSW%2Fref%3Dsr_1_2_sspa%3Fdchild%3D1%26keywords%3Dthrow%2Bpillows%2Bcyan%26qid%3D1619743518%26sr%3D8-2-spons%26psc%3D1&qualifier=1619743518&id=7819697097836965&widgetName=sp_atf",
+        "categories": [
+          {
+            "name": "All Departments"
+          }
+        ],
+        "image": "https://m.media-amazon.com/images/I/61omBrOpUtL._AC_UL640_FMwebp_QL65_.jpg",
+        "is_prime": false,
+        "rating": 1,
+        "ratings_total": 1,
+        "sponsored": false,
+        "prices": [
+          {
+            "symbol": "$",
+            "value": 36860,
+            "currency": "USD",
+            "raw": "$11.59"
+          }
+        ],
+        "price": {
+          "symbol": "$",
+          "value": 34,
+          "currency": "USD",
+          "raw": "$11.59"
+        },
+        "delivery": {
+          "price": {
+            "symbol": "$",
+            "currency": "USD",
+            "value": 0,
+            "raw": "FREE Shipping",
+            "is_free": true
+          }
+        }
+      }
 ]
