@@ -2,7 +2,6 @@
   "name": "aishoppr",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8000/",
   "dependencies": {
     "@google-cloud/vision": "^2.3.1",
     "@testing-library/jest-dom": "^5.11.9",
