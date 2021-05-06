@@ -1,4 +1,4 @@
-// import logo from './logo.svg';
+import React from 'react';
 import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ShopprProvider } from "./utils/GlobalState";
