@@ -1,4 +1,4 @@
-import React from 'react';
+// import logo from './logo.svg';
 import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ShopprProvider } from "./utils/GlobalState";
@@ -10,7 +10,6 @@ import Search from './pages/Search';
 import Analyze from './pages/Analyze';
 import Results from './pages/Results';
 import Login from './pages/Login';
-import About from './pages/About';
 import NotFound from './pages/NotFound';
 
 // import { ToastProvider } from 'react-toast-notifications'
@@ -32,7 +31,6 @@ function App() {
             <Route path='/analyze' component={Analyze} />
             <Route path='/results' component={Results} />
             <Route path='/login' component={Login} />
-            <Route path='/about' component={About} />
             <Route component={NotFound} />
           </Switch>
           <Footer />
