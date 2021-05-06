@@ -5,6 +5,7 @@
     "node": "12.x",
     "npm": "7.x"
   },
+  "main": "server.js",
   "private": true,
   "proxy": "http://localhost:8000/",
   "dependencies": {
