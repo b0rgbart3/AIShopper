@@ -11,34 +11,31 @@ function Search(){
     const url = useRef();
     const [localUrl, setLocalUrl] = useState('');
     const [localSearches, setLocalSearches] = useState([]);
-    const name = "";
+
 
     useEffect(() => {
-        const getSearches = async() => {
-        const response = await API.getSearches();
-        const data = await response.data;
-        console.log(data);
-        // checking to see if these images actually load...
-        let goodData = [];
-        data.forEach( (image) => {
-           let imgObject = new Image(100,100);
-           imgObject.src = image.image_url;
-           if (imgObject.complete) {
-            goodData.push(image);
-           }
-        })
-        setLocalSearches(goodData);
-      }
-      getSearches();
+            API.getSearches()
+            .then( response => {
+              const data = response.data;
+              console.log("data:", data);
 
-    }, [name]);
-
-    // API.getSearches().then((response) => {
-    //   console.log("Got these searches:", response);
-    //   setLocalSearches(response.data);
-    // }).catch((err) => {
-    //   console.log("Error loading previous searches:", err);
-    // });
+              // Sometimes urls of images on the web change so
+              // we don't want to display dead images, so let's
+              // check to see if these images actually load...
+              // and only keep the images that actually load
+              
+              let goodData = [];
+              data.forEach( (image) => {
+                let imgObject = new Image(100,100);
+                imgObject.src = image.image_url;
+                imgObject.onload = ()=> {
+                  goodData.push(image);
+                  console.log('image finished loading....', goodData);
+                  setLocalSearches([...goodData]);
+                }
+              })
+            })
+    }, []);  // empty array makes it so that this effect only runs once - when the component mounts.
 
     function saveSearch(payload) {
       console.log("payload to save search: ", payload);
@@ -191,8 +188,9 @@ function Search(){
     return (
       <div className='search'>
       <div className=''>
+      {localSearches.map((search)=>(<p key={search.image_url}>{search.image_url}</p>))}
 
-      { localSearches ? (      <div><h1>previous searches:</h1><div className='thumbs'>
+      { localSearches.length>0 ? (      <div><h1>previous searches:</h1><div className='thumbs'>
       {localSearches.map((search,index) => (
         <div key={index} className='thumb'>
         <img src={search.image_url} alt={search.title} onClick={()=>{selectSearch(search)}} />

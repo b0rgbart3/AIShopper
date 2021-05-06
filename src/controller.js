@@ -169,7 +169,7 @@ module.exports = {
       raw: true,
     }
     ).then( (response) => {
-     // console.log("In getALLSearches: response from searching db for matching urls: ", response);
+      console.log("In getALLSearches: response from searching db for matching urls: ", response);
       res.json(response);
     }).catch ( (error) => {
       console.log("There was an error: ", error);
