@@ -34,6 +34,8 @@ function Search(){
                   setLocalSearches([...goodData]);
                 }
               })
+            }).catch( err=> {
+              console.log("In catch block, with err: ", err);
             })
     }, []);  // empty array makes it so that this effect only runs once - when the component mounts.
 
