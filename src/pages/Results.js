@@ -50,7 +50,7 @@ function Results(){
         });
 
     }
-    console.log(products);
+  
     return (
         <>
         <div className='results'>

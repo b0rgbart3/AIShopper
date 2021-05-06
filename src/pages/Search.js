@@ -188,7 +188,7 @@ function Search(){
     return (
       <div className='search'>
       <div className=''>
-      {localSearches.map((search)=>(<p key={search.image_url}>{search.image_url}</p>))}
+      {/* {localSearches.map((search)=>(<p key={search.image_url}>{search.image_url}</p>))} */}
 
       { localSearches.length>0 ? (      <div><h1>previous searches:</h1><div className='thumbs'>
       {localSearches.map((search,index) => (
