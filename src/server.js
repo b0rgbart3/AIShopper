@@ -27,6 +27,7 @@ app.get('/api/products/:item', (req,res) => {
   shopprController.getProducts(req,res);
 });
 app.get('/api/users', (req,res) => {
+  console.log("GOT USER GET");
   shopprController.getUsers(req,res);
 });
 app.post('/api/extractUrl', (req,res) => {

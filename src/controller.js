@@ -165,6 +165,8 @@ module.exports = {
 
   getSearches: function (req, res) {
     console.log("In Controller, searching the db.");
+    //res.status(400);
+
     db.Search.findAll( {
       raw: true,
     }

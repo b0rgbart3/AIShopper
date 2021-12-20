@@ -30,7 +30,7 @@ function Login(){
                    // console.log("Logged in new user: ", newUser);
                     dispatch({ type: LOGIN, user: newUser.data });
                     } else {
-                        //console.log("Error logging in.");
+                        console.log("Error logging in.");
                         throw("Error logging in.");
                     }
 
