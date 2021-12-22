@@ -6,7 +6,7 @@ const Footer = (props) => {
     return (
         <footer>
         <div className='footerCol'>
-            <div className='footerLogo'>ImageShoppr<span className='registered'>®</span></div>
+            <div className='footerLogo'>AIShoppr<span className='registered'>®</span></div>
             <p>The smartest shopping search engine.</p>
             
             <p className='copyright'>© 2021 Bart Dority</p>

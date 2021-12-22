@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import API from '../utils/API';
+import { useHistory } from "react-router-dom";
 import { useShopprContext } from "../utils/GlobalState";
 import { LOGIN, TOAST, LOADING, STOP_LOADING } from "../utils/actions";
 // import API from "../utils/API";
@@ -9,6 +10,7 @@ import "./Login.scss";
 
 function Login(){
     const [state, dispatch] = useShopprContext();
+    const history = useHistory();
 
     let email= useRef();
     let newEmail = useRef();
@@ -18,6 +20,7 @@ function Login(){
     function submitCreds(e) {
         e.preventDefault();
         
+      //  console.log("ABOUT TO SUBMIT CREDENTIALS");
         if (email.current.value && p.current.value) {
             let User = {
                 email: email.current.value,
@@ -26,9 +29,12 @@ function Login(){
 
             API.login(User)
                 .then((newUser) => {
+                    console.log("GOT this user: ", newUser);
                     if (newUser.status === 200) {
-                   // console.log("Logged in new user: ", newUser);
+                    console.log("Logged in new user: ", newUser);
                     dispatch({ type: LOGIN, user: newUser.data });
+                    console.log("ABOUT TO REDIRECT");
+                    history.push('/search');
                     } else {
                         console.log("Error logging in.");
                         throw("Error logging in.");
