@@ -28,7 +28,7 @@ header {
     background-color:$button-color;
     color:black;
     font-weight: 600;
-    padding:20px;
+    padding-left:20px;
     width:100%;
     box-sizing: border-box;
 }
@@ -81,6 +81,20 @@ a.navLink:hover {
     color:white;
 }
 
+.adminLink {
+    display: inline-block;
+    background-color: darkblue;
+    color:white;
+    font-weight: bold;
+    padding:8px;
+    box-sizing: border-box;
+    border-radius:8px;
+    float:right;
+}
+
+.adminLink a {
+    color:white;
+}
 
 
 

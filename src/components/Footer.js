@@ -22,7 +22,7 @@ const Footer = (props) => {
             <Link className="" to="/about">
                 <li>About</li>
             </Link>
-            <Link className="" to="/login'">
+            <Link className="" to="/login">
                 <li>Login</li>
             </Link>
             </ul>

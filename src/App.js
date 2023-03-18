@@ -2,6 +2,7 @@
 import "./App.scss";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { ShopprProvider } from "./utils/GlobalState";
+import Admin from "./pages/Admin";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import MyToast from "./components/MyToast";
@@ -25,6 +26,7 @@ function App() {
             <MyToast />
             <Switch>
               <Route path="/" component={Home} exact />
+              <Route path="/admin" component={Admin} />
               <Route path="/search" component={Search} exact />
               <Route path="/analyze" component={Analyze} />
               <Route path="/results" component={Results} />

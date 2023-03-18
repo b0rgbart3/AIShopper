@@ -82,6 +82,36 @@ a.heroPill {
     border-radius:30px;
 }
 
+.panel {
+    margin:20px;
+    padding:10px;
+    border-radius:10px;
+    border:2px solid gray;
+}
+
+.row {
+    border:1px solid gray;
+    padding:6px;
+}
+
+.rowHeader {
+    background-color:gray;
+    padding:6px;
+}
+
+.utilityBtn {
+    background-color:gray;
+    padding:4px;
+    border-radius:4px;
+    color:white;
+    user-select: none;
+    cursor: pointer;
+}
+
+.utilityBtn:hover {
+    background-color: blue;
+}
+
 @media only screen and (min-width:800px) {
     a.heroPill {
         top:-100px;

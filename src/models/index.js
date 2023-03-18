@@ -25,10 +25,10 @@ const DB_PASS = env_variables["SHOPPR_PASS"];
 
 // Create the DB Connection
 console.log("Creating Sequelize Connection using: ");
-console.log("DB_HOST: ", DB_HOST);
-console.log("DB_NAME: ", DB_NAME);
-console.log("DB_USER: ", DB_USER);
-console.log("DB_PASS: ", DB_PASS);
+// console.log("DB_HOST: ", DB_HOST);
+// console.log("DB_NAME: ", DB_NAME);
+// console.log("DB_USER: ", DB_USER);
+// console.log("DB_PASS: ", DB_PASS);
 
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
   host: DB_HOST,
@@ -59,7 +59,7 @@ async function connectToDB() {
     db.Friend_Connection = models.Friend_Connection;
     db.sequelize = sequelize; // this is a reference to our sequelize connection instance
     db.Sequelize = Sequelize; // this is a reference to the Sequelize base code Library
-    console.log("Finished creating the db models.");
+    //   console.log("Finished creating the db models.");
     // db.sequelize.sync({ force: true });
   }
 }

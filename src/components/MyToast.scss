@@ -4,11 +4,13 @@
     
     display:inline-block;
     margin:auto;
-    opacity:0;
+    opacity:1;
     height:200px;
     padding:40px;
     transition:all .5s;
     margin-top:0;
+    width:200px;
+    background-color:white;
     box-shadow:0 0 0px rgba(0,0,0,.0);
 }
 

@@ -6,28 +6,34 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 140],
+        len: [1, 100],
       },
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
-        len: [1, 140],
-        isEmail: true,
+        len: [1, 100],
+        isEmail: true
       },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8, 350],
+        len: [8, 200],
       },
+    },
+    admin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
     avatar: {
       type: DataTypes.STRING,
       allowNull: true,
     },
+
   });
 
   User.associate = function (models) {
@@ -46,6 +52,8 @@ module.exports = function (sequelize, DataTypes) {
 
   };
 
+  User.sync({ alter: true });
+
 
   // // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   // User.prototype.validPassword = function (password) {
@@ -62,3 +70,21 @@ module.exports = function (sequelize, DataTypes) {
   // });
   return User;
 };
+
+
+/*
+
+USE SHOPPR;
+drop table Users;
+create table Users(
+   id INT NOT NULL AUTO_INCREMENT,
+   username VARCHAR(100) NOT NULL,
+   email VARCHAR(100) NOT NULL,
+   password VARCHAR(200) NOT NULL,
+   avatar VARCHAR(200),
+   admin BOOLEAN NOT NULL,
+   createdAt DATE,
+   updatedAt DATE,
+   PRIMARY KEY ( id )
+);
+*/
